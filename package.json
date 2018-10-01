@@ -1,11 +1,11 @@
 {
-  "name": "serverless-test",
+  "name": "test-setup-aws",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "deploy": "deploy-aws-s3-cloudfront --bucket <todo> --source=./public/",
+    "deploy": "deploy-aws-s3-cloudfront --bucket aperkkio.test --distribution E2LONK5BOJ7SSK --source=./public/",
     "start": "webpack-dev-server --hot --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
