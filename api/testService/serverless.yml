@@ -5,8 +5,6 @@ provider:
   runtime: nodejs8.10
   stackName: test-stack
   apiName: test-api
-#  deploymentBucket:
-#    name: aperkkio.test.bucket
   versionFunctions: false
   endpointType: regional
 
@@ -14,19 +12,31 @@ functions:
   hello:
     handler: handler.hello
     events:
-      - http: GET temp
+      - http: GET api/temp
 
 resources:
   Resources:
+    # Reference https://gist.github.com/TimCoates/13b1ae454154425f7afc421707db2f86#file-serverless-yml-L43
     CloudFrontDistribution:
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
           Enabled: "true"
           DefaultRootObject: "index.html"
-# The default caching applies to the default (root) objects, not to images etc...
           DefaultCacheBehavior:
             AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+            TargetOriginId: myS3Origin
+            ForwardedValues:
+              QueryString: "false"
+            ViewerProtocolPolicy: allow-all
+            MinTTL: "0"
+            MaxTTL: "6"
+            DefaultTTL: "3"
+          CacheBehaviors:
+          - AllowedMethods:
             - GET
             - HEAD
             MinTTL: "0"
@@ -37,35 +47,19 @@ resources:
               QueryString: 'true'
               Cookies:
                 Forward: all
-            ViewerProtocolPolicy: redirect-to-https
-            PathPattern: /api
-# Here we define two behaviours of how we cache responses
-          CacheBehaviors:
-          - AllowedMethods:
-            - GET
-            - HEAD
-            - OPTIONS
-            TargetOriginId: myS3Origin
-            ForwardedValues:
-              QueryString: "false"
-            ViewerProtocolPolicy: https-only
-            MinTTL: "0"
-            MaxTTL: "6"
-            DefaultTTL: "3"
-# Here we define the API origin
+            ViewerProtocolPolicy: allow-all
+            PathPattern: api/*
           Origins:
             - DomainName:
                Fn::Join:
                 - ""
                 - - Ref: ApiGatewayRestApi
-                  - ".execute-api.${self:provider.region}.amazonaws.com"
+                  - ".execute-api.us-east-1.amazonaws.com"
               Id: myAPIOrigin
-              OriginPath: /${self:provider.stage}
+              OriginPath: /dev
               CustomOriginConfig:
                 OriginProtocolPolicy: https-only
-# Here's the origin from S3...
             - DomainName: aperkkio.test.s3.amazonaws.com
-              ## An identifier for the origin which must be unique within the distribution
               Id: myS3Origin
               S3OriginConfig:
-                OriginAccessIdentity: origin-access-identity/cloudfront/E319AJIF3O3H49
+                OriginAccessIdentity: ''
