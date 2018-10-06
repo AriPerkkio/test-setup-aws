@@ -1,4 +1,4 @@
-service: helloService
+service: service-one
 
 provider:
   name: aws
@@ -9,10 +9,14 @@ provider:
   endpointType: regional
 
 functions:
-  hello:
-    handler: handler.hello
+  functionOne:
+    handler: functions/handlers.one
     events:
-      - http: GET api/temp
+      - http: GET api/endpoint-one
+  functionTwo:
+    handler: functions/handlers.two
+    events:
+      - http: GET api/endpoint-two
 
 resources:
   Resources:

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "cd testService && serverless deploy -v",
+    "deploy": "serverless deploy -v",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

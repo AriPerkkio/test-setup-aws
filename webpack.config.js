@@ -44,7 +44,7 @@ module.exports = (env, argv) => {
             contentBase: getPath('public'),
             proxy: {
                 '/api': {
-                    target: '<apigw>',
+                    target: 'http://d2yvewft3wdr35.cloudfront.net',
                     changeOrigin: true,
                     logLevel: 'debug'
                 }
