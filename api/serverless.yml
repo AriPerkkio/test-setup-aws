@@ -12,11 +12,23 @@ functions:
   functionOne:
     handler: functions/handlers.one
     events:
-      - http: GET api/endpoint-one
+      - http:
+          path: api/endpoint-one
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId:
+              Ref: Authorizer
   functionTwo:
     handler: functions/handlers.two
     events:
-      - http: GET api/endpoint-two
+      - http:
+          path: api/endpoint-two
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId:
+              Ref: Authorizer
 
 resources:
   Resources:
@@ -67,3 +79,30 @@ resources:
               Id: myS3Origin
               S3OriginConfig:
                 OriginAccessIdentity: ''
+    UserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        AutoVerifiedAttributes:
+          - email
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 7
+            RequireLowercase: true
+            RequireNumbers: true
+            RequireUppercase: true
+        Schema:
+          - AttributeDataType: String
+            Mutable: false
+            Name: email
+            Required: true
+        UserPoolName: test-user-pool
+    Authorizer:
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        IdentitySource: method.request.header.Authorization
+        Name: test-authorizer
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        Type: COGNITO_USER_POOLS
+        ProviderARNs:
+          - Fn::GetAtt: [UserPool, Arn]
