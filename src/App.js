@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Signup from './signup';
+
 export default class App extends Component {
     state = {
         one: null,
@@ -25,6 +27,10 @@ export default class App extends Component {
                     <pre>{JSON.stringify(one, null, 4)}</pre>}
                 {two && 
                     <pre>{JSON.stringify(two, null, 4)}</pre>}
+                <br />
+                <br />
+
+                <Signup />
             </div>
         );
     }
