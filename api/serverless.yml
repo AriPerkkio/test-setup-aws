@@ -1,9 +1,15 @@
 service: service-one
 
+plugins:
+  - serverless-stack-output
+
+custom:
+  output:
+    file: cf-output.json
+
 provider:
   name: aws
   runtime: nodejs8.10
-  stackName: test-stack
   apiName: test-api
   versionFunctions: false
   endpointType: regional
@@ -35,3 +41,18 @@ resources:
     CloudFrontDistribution: ${file(./resources/cloudfront.yml)}
     Authorizer: ${file(./resources/cognito-authorizer.yml)}
     UserPool: ${file(./resources/cognito-userpool.yml)}
+    UserPoolClient: ${file(./resources/cognito-userpoolclient.yml)}
+
+  Outputs:
+    CloudFrontDomainName:
+      Value:
+        Fn::GetAtt: ['CloudFrontDistribution', 'DomainName']
+    CloudFrontDistrubutionId:
+      Value:
+        Ref: CloudFrontDistribution
+    UserPoolClient:
+      Value:
+        Ref: UserPoolClient
+    UserPool:
+      Value:
+        Ref: UserPool

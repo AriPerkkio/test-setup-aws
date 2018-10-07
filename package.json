@@ -5,13 +5,14 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "deploy": "deploy-aws-s3-cloudfront --bucket aperkkio.test --distribution E27TS8254IJ51C --source=./public/",
+    "deploy": "deploy-aws-s3-cloudfront --bucket aperkkio.test --source=./public/",
     "start": "webpack-dev-server --hot --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amazon-cognito-identity-js": "^3.0.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   },

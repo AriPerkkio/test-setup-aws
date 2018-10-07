@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const cf = require('./api/cf-output.json');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -44,7 +45,7 @@ module.exports = (env, argv) => {
             contentBase: getPath('public'),
             proxy: {
                 '/api': {
-                    target: 'http://d2yvewft3wdr35.cloudfront.net',
+                    target: `http://${cf.CloudFrontDomainName}`,
                     changeOrigin: true,
                     logLevel: 'debug'
                 }

@@ -3,3 +3,4 @@ public/main.*
 package-lock.json
 .serverless
 .vscode
+cf-output.json
