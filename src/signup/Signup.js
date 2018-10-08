@@ -1,58 +1,50 @@
-import React, { Component } from 'react';
-import { CognitoUserPool, CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import React, { Fragment } from 'react';
 
-import config from '../../api/cf-output';
+const Signup = ({
+    email,
+    password,
+    verificationCode,
+    onEmailChange,
+    onPasswordChange,
+    onVerificationCodeChange,
+    onSignUp,
+    onVerify,
+    error,
+    showVerify
+}) => {
 
-const userPool = new CognitoUserPool({
-    UserPoolId: config.UserPool,
-    ClientId: config.UserPoolClient
-});
+    return (
+        <Fragment>
+            {error &&
+                <pre>{`Error: ${JSON.stringify(error, null, 4)}`}</pre>}
 
-export default class Signup extends Component {
-    state = {
-        email: '',
-        password: ''
-    }
-
-    setEmail = email => this.setState({ email })
-    setPassword = password => this.setState({ password })
-
-    onSubmit = event => {
-        event.preventDefault();
-        const { email, password } = this.state;
-        const { onSuccess, onError } = this.props;
-
-        const attributeList = [
-            new CognitoUserAttribute({
-                Name: 'email',
-                Value: email
-            })
-        ];
-
-        userPool.signUp(email, password, attributeList, null, (error, result) => {
-            if(error) {
-                return onError(error);
-            }
-
-            onSuccess(result);
-        });
-    }
-
-    render() {
-        const { email, password } = this.state;
-
-        return (
-            <form onSubmit={this.onSubmit}>
-                <input type="text"
-                       value={email}
-                       placeholder="Email"
-                       onChange={( { target: { value }}) => this.setEmail(value.trim())}/>
-                <input type="password"
-                       value={password}
-                       placeholder="Password"
-                       onChange={( { target: { value }}) => this.setPassword(value.trim())}/>
-                <input type="submit"/>
+            <form onSubmit={onSignUp}>
+                <fieldset disabled={showVerify}>
+                    <input type="text"
+                           value={email}
+                           placeholder="Email"
+                           onChange={( { target: { value }}) => onEmailChange(value.trim())}/>
+                    <input type="password"
+                           value={password}
+                           placeholder="Password"
+                           onChange={( { target: { value }}) => onPasswordChange(value.trim())}/>
+                    <input type="submit"/>
+                </fieldset>
             </form>
-        )
-    }
-}
+
+            {showVerify &&
+                <form onSubmit={onVerify}>
+                    <input
+                        type='text'
+                        placeholder='Verification code'
+                        value={verificationCode}
+                        onChange={({ target: { value }}) => onVerificationCodeChange(value)} />
+                    <input
+                        type='submit'
+                        text='Verify' />
+                </form> }
+        </Fragment>
+    );
+};
+
+export default Signup;
