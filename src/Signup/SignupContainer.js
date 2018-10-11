@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import { CognitoUserPool, CognitoUserAttribute, CognitoUser } from 'amazon-cognito-identity-js';
 
 import Signup from './Signup';
-import config from '../../api/cf-output';
-
-const userPool = new CognitoUserPool({
-    UserPoolId: config.UserPool,
-    ClientId: config.UserPoolClient
-});
+import { verify, signup } from '../api/UserApi';
 
 export default class SignupContainer extends Component {
     state = {
         email: '',
         password: '',
         verificationCode: '',
+        isLoading: false,
         error: null,
         showVerify: false
     }
@@ -21,46 +16,32 @@ export default class SignupContainer extends Component {
     setEmail = email => this.setState({ email })
     setPassword = password => this.setState({ password })
     setVerificationCode = verificationCode => this.setState({ verificationCode })
-    setError = error => this.setState({ error })
     setShowVerify = showVerify => this.setState({ showVerify })
+    setIsLoading = isLoading => this.setState({ isLoading })
 
-    onVerify = event => {
-        event.preventDefault();
+    onError = error => this.setState({
+        error,
+        isLoading: false
+    });
+
+    onVerify = () => {
         const { email, verificationCode } = this.state;
 
-        const user = new CognitoUser({
-            Username: email,
-            Pool: userPool
-        });
+        this.setIsLoading(true);
 
-        user.confirmRegistration(verificationCode, true, (err, result) => {
-            if(err) {
-                return this.setError(err);
-            }
-
-            console.log(result);
-        });
+        verify(email, verificationCode)
+            .then(() => console.log('OK'))
+            .catch(this.onError);
     }
 
-    onSignup = event => {
-        event.preventDefault();
+    onSignup = () => {
         const { email, password } = this.state;
 
-        const attributeList = [
-            new CognitoUserAttribute({
-                Name: 'email',
-                Value: email
-            })
-        ];
+        this.setIsLoading(true);
 
-        userPool.signUp(email, password, attributeList, null, error => {
-            if(error) {
-                return this.setError(error);
-            }
-
-            this.setShowVerify(true);
-
-        });
+        signup(email, password)
+            .then(() => this.setShowVerify(true))
+            .catch(this.onError);
     }
 
     render() {

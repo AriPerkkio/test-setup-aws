@@ -1,0 +1,17 @@
+.signup-form {
+    fieldset {
+        width: 50%;
+        margin: auto;
+    }
+
+    input {
+        display: block;
+        margin: 1rem 0;
+        width: 100%;
+
+        &[type=submit] {
+            width: 30%;
+            margin-left: auto;
+        }
+    }
+}
