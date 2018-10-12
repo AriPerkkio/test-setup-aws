@@ -2,16 +2,14 @@ import React, { Fragment } from 'react';
 
 const preventEventSubmit = onSubmit => event => {
     event.preventDefault();
-    onSubmit();
+    const email = event.target[0].value;
+    const password = event.target[1].value;
+    const verificationCode = event.target[2].value;
+
+    onSubmit({ email, password, verificationCode });
 };
 
 const Signup = ({
-    email,
-    password,
-    verificationCode,
-    onEmailChange,
-    onPasswordChange,
-    onVerificationCodeChange,
     onSignUp,
     onVerify,
     error,
@@ -25,40 +23,28 @@ const Signup = ({
         'Verify' :
         'Signup';
 
-    const verificationAttributes = {
-        type: 'text',
-        placeholder: 'Verification code',
-        value: verificationCode,
-        onChange: ({ target: { value }}) => onVerificationCodeChange(value)
-    };
-
-    const passwordAttributes = {
-        type: 'password',
-        value: password,
-        placeholder: 'Password',
-        onChange: ( { target: { value }}) => onPasswordChange(value.trim())
-    };
-
     return (
         <Fragment>
             {error &&
                 <pre>{`Error: ${JSON.stringify(error, null, 4)}`}</pre>}
 
-            <form onSubmit={preventEventSubmit(onSubmit)} className='signup-form'>
-                <fieldset>
-                    <input
-                        type="text"
-                        value={email}
-                        placeholder="Email"
-                        disabled={showVerify}
-                        onChange={( { target: { value }}) => onEmailChange(value.trim())}/>
+            <form onSubmit={preventEventSubmit(onSubmit)} className='generic-form'>
+                <input
+                    type='text'
+                    placeholder='Email'
+                    disabled={showVerify}/>
 
-                    {showVerify ?
-                        <input { ...verificationAttributes } /> :
-                        <input { ...passwordAttributes }/> }
+                <input
+                    type='password'
+                    placeholder='Password'
+                    style={{ display: showVerify ? 'none' : 'block' }}/>
 
-                    <input type="submit" text={buttonText} />
-                </fieldset>
+                <input
+                    type='text'
+                    placeholder='Verification code'
+                    style={{ display: showVerify ? 'block' : 'none' }} />
+
+                <input type='submit' text={buttonText} />
             </form>
         </Fragment>
     );

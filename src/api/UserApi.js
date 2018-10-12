@@ -1,4 +1,4 @@
-import { CognitoUserPool, CognitoUserAttribute, CognitoUser } from 'amazon-cognito-identity-js';
+import { CognitoUserPool, CognitoUserAttribute, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
 import config from '../../api/cf-output';
 
@@ -12,35 +12,49 @@ const User = email => new CognitoUser({
     Pool: userPool
 });
 
+const LoginData = (email, password) => new AuthenticationDetails({
+    Username: email,
+    Password: password
+});
+
+const resultHandler = (resolve, reject) =>
+    (error, result) =>
+        error ? reject(error) : resolve(result);
+
 const verify = (email, verificationCode) =>
     new Promise((resolve, reject) => {
         const user = User(email);
+        const handler = resultHandler(resolve, reject);
 
-        user.confirmRegistration(verificationCode, true, (err, result) => {
-            if(err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
+        user.confirmRegistration(verificationCode, true, handler);
     });
 
 const signup = (email, password) =>
     new Promise((resolve, reject) => {
-        const attributeList = [
-            new CognitoUserAttribute({ Name: 'email', Value: email })
-        ];
+        const attributeList = [ new CognitoUserAttribute({ Name: 'email', Value: email }) ];
+        const handler = resultHandler(resolve, reject);
 
-        userPool.signUp(email, password, attributeList, null, (error, result) => {
-            if(error) {
-                reject(error);
-            } else {
-                resolve(result);
-            }
+        userPool.signUp(email, password, attributeList, null, handler);
+    });
+
+const login = (email, password) =>
+    new Promise((resolve, reject) => {
+        const user = User(email);
+        const loginData = LoginData(email, password);
+
+        user.authenticateUser(loginData, {
+            onFailure: reject,
+            onSuccess: result => {
+                const accessToken = result.getAccessToken().getJwtToken();
+                const idToken = result.getIdToken().getJwtToken();
+
+                resolve({ accessToken, idToken });
+            },
         });
     });
 
 export {
     signup,
-    verify
+    verify,
+    login
 };
