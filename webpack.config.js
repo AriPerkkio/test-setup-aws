@@ -1,22 +1,24 @@
-const webpack = require('webpack');
 const path = require('path');
 const cf = require('./api/cf-output.json');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const getPath = dir => path.resolve(__dirname, dir);
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
 
+    const plugins = isProduction ?
+        [ new MiniCssExtractPlugin() ] :
+        [ new HtmlWebPackPlugin({ templateContent: '<div id="app-root"></div>'}) ];
+
     return {
         entry: getPath('src/index.js'),
         output: {
             path: getPath('public')
         },
-        plugins: [
-            new MiniCssExtractPlugin()
-        ],
+        plugins,
         module: {
             rules: [{
                 test: /.scss$/,
@@ -42,7 +44,6 @@ module.exports = (env, argv) => {
         },
         devServer: {
             port: 3000,
-            contentBase: getPath('public'),
             proxy: {
                 '/api': {
                     target: `http://${cf.CloudFrontDomainName}`,
@@ -51,5 +52,5 @@ module.exports = (env, argv) => {
                 }
             }
         }
-    }
-}
+    };
+};
