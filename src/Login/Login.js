@@ -39,7 +39,7 @@ const Login = ({
                     className='form-control'/>
 
                 <SubmitButton
-                    text='Login'
+                    value='Login'
                     isLoading={isLoading} />
             </form>
         </Fragment>

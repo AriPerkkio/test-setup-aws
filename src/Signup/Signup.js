@@ -58,8 +58,9 @@ const Signup = ({
                     style={{ display: showVerify ? 'block' : 'none' }}>
                     Verification code was sent to your email
                 </small>
+
                 <SubmitButton
-                    text={buttonText}
+                    value={buttonText}
                     isLoading={isLoading} />
             </form>
         </Fragment>
