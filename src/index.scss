@@ -1,3 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
 
-@import './common/form';
+@import './common/colors.scss';
+
+body {
+    background-color: $background;
+}
+
+#app-root {
+    @import './common/form';
+    @import './common/SubmitButton/submit-button';
+
+    font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
+    color: $cyan;
+
+
+    .error pre {
+        color: $red;
+        width: 70%;
+        margin: 0 auto;
+    }
+}

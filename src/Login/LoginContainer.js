@@ -27,11 +27,12 @@ export default class LoginContainer extends Component {
     }
 
     render() {
-        const { error } = this.state;
+        const { isLoading, error } = this.state;
 
         return (
             <Login
                 onSubmit={this.onSubmit}
+                isLoading={isLoading}
                 error={error} />
         );
     }

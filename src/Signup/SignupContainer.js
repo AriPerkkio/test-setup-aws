@@ -10,9 +10,8 @@ export default class SignupContainer extends Component {
         showVerify: false
     }
 
-    setShowVerify = () => this.setState({ showVerify: true })
     setIsLoading = isLoading => this.setState({ isLoading })
-
+    setShowVerify = () => this.setState({ showVerify: true, isLoading: false })
     onError = error => this.setState({ error, isLoading: false })
 
     forwardToLogin = () => {
@@ -38,12 +37,13 @@ export default class SignupContainer extends Component {
     }
 
     render() {
-        const { error, showVerify } = this.state;
+        const { isLoading, error, showVerify } = this.state;
 
         return (
             <Signup
                 onSignUp={this.onSignup}
                 onVerify={this.onVerify}
+                isLoading={isLoading}
                 error={error}
                 showVerify={showVerify} />
         );
