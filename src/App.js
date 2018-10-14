@@ -1,19 +1,24 @@
-import React from 'react';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { HashRouter, Route } from 'react-router-dom';
 
-import Signup from './Signup';
-import Login from './Login';
+import NavigationHeader from './components/NavigationHeader';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import AuthPage from './components/AuthPage';
+import { ContextProvider } from './context';
 
 const App = () => {
     return (
-        <HashRouter>
-            <Switch>
-                <Route path="/signup" component={Signup} />
-                <Route path="/login" component={Login} />
-                <Route path="/some-page" component={() => <div>Logged in successfully</div>} />
-                <Redirect to="/login" />
-            </Switch>
-        </HashRouter>
+        <ContextProvider>
+            <HashRouter>
+                <Fragment>
+                    <NavigationHeader />
+                    <Route path="/signup" component={Signup} />
+                    <Route path="/login" component={Login} />
+                    <Route path="(/auth-page|/)" component={AuthPage} />
+                </Fragment>
+            </HashRouter>
+        </ContextProvider>
     );
 };
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { CognitoUserPool, CognitoUserAttribute, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 
 import config from '../../api/cf-output';
@@ -53,8 +54,34 @@ const login = (email, password) =>
         });
     });
 
+const logout = () => userPool.getCurrentUser().signOut();
+
+const isLoggedIn = () => {
+    return userPool.getCurrentUser() != null;
+};
+
+const withAuthentication = Component => props => {
+    const { history } = props;
+    const user = userPool.getCurrentUser();
+
+    if(user != null) {
+        user.getSession((err, session) => {
+            if(err || !session || !session.isValid()) {
+                history.push('/login');
+            }
+        });
+    } else {
+        history.push('/login');
+    }
+
+    return <Component {...props} />;
+};
+
 export {
     signup,
     verify,
-    login
+    login,
+    logout,
+    withAuthentication,
+    isLoggedIn
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Signup from './Signup';
-import { verify, signup } from '../api/UserApi';
+import { verify, signup } from '../../api/UserApi';
 
 export default class SignupContainer extends Component {
     state = {

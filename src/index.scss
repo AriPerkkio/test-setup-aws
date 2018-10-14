@@ -1,18 +1,18 @@
 @import '~bootstrap/scss/bootstrap';
 
-@import './common/colors.scss';
+@import './components/common/colors';
 
 body {
     background-color: $background;
 }
 
 #app-root {
-    @import './common/form';
-    @import './common/SubmitButton/submit-button';
+    @import './components/common/form';
+    @import './components/common/SubmitButton/submit-button';
+    @import './components/NavigationHeader/navigation-header';
 
     font-family: 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback';
     color: $cyan;
-
 
     .error pre {
         color: $red;

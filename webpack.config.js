@@ -44,6 +44,8 @@ module.exports = (env, argv) => {
         },
         devServer: {
             port: 3000,
+            overlay: true,
+            contentBase: './public',
             proxy: {
                 '/api': {
                     target: `http://${cf.CloudFrontDomainName}`,

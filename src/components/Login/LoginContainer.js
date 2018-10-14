@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import Login from './Login';
-import { login } from '../api/UserApi';
+import { login } from '../../api/UserApi';
+import { withContext } from '../../context';
 
-export default class LoginContainer extends Component {
+class LoginContainer extends Component {
     state = {
         error: null,
         isLoading: false
@@ -12,17 +13,18 @@ export default class LoginContainer extends Component {
     setIsLoading = isLoading => this.setState({ isLoading })
     onError = error => this.setState({ error, isLoading: false })
 
-    forwardToSomewhere = () => {
+    forwardToAuthPage = () => {
         this.setIsLoading(false);
 
-        this.props.history.push('/some-page');
+        this.props.history.push('/auth-page');
     }
 
     onSubmit = ({email, password}) => {
         this.setIsLoading(true);
 
         login(email, password)
-            .then(this.forwardToSomewhere)
+            .then(this.props.setAuthToken)
+            .then(this.forwardToAuthPage)
             .catch(this.onError);
     }
 
@@ -37,3 +39,5 @@ export default class LoginContainer extends Component {
         );
     }
 }
+
+export default withContext(LoginContainer);
