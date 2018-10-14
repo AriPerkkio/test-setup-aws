@@ -45,12 +45,7 @@ const login = (email, password) =>
 
         user.authenticateUser(loginData, {
             onFailure: reject,
-            onSuccess: result => {
-                const accessToken = result.getAccessToken().getJwtToken();
-                const idToken = result.getIdToken().getJwtToken();
-
-                resolve({ accessToken, idToken });
-            },
+            onSuccess: result => resolve(result.getIdToken().jwtToken)
         });
     });
 
@@ -77,11 +72,23 @@ const withAuthentication = Component => props => {
     return <Component {...props} />;
 };
 
+const getAuthToken = () =>
+    new Promise((resolve, reject) => {
+        const user = userPool.getCurrentUser();
+
+        user && user.getSession((err, session) => {
+            if(err) return reject(err);
+
+            resolve(session.getIdToken().jwtToken);
+        });
+    });
+
 export {
     signup,
     verify,
     login,
     logout,
     withAuthentication,
-    isLoggedIn
+    isLoggedIn,
+    getAuthToken
 };
