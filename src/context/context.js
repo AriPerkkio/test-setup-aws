@@ -1,5 +1,4 @@
 import React, { Component, createContext } from 'react';
-import { getAuthToken } from '../api/UserApi';
 
 const { Provider, Consumer } = createContext();
 
@@ -8,11 +7,6 @@ class ContextProvider extends Component {
         authToken: null,
         setAuthToken: authToken => this.setState({ authToken }),
         ...this.props
-    }
-
-    componentDidMount() {
-        getAuthToken()
-            .then(this.state.setAuthToken);
     }
 
     render() {

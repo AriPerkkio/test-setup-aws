@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
 
 import { withContext } from '../../context';
-import { withAuthentication } from '../../api/UserApi';
+import { withAuthentication } from '../../authentication';
+import TestApi from '../../api/TestApi';
 
 class AuthPage extends Component {
-
     state = {
-        apiResponse: null,
+        response: null,
         error: null
     }
 
+    api = TestApi({ authToken: this.props.authToken })
+
+    getOne = () => this.api.getOne()
+        .then(this.setApiResponse)
+        .catch(this.error)
+
     setApiResponse = apiResponse => this.setState({ apiResponse })
     setError = error => this.setState({ error })
-
-    callApi = () => {
-        const config = {
-            headers: {
-                'X-Authorization': this.props.authToken
-            }
-        };
-
-        fetch('/api/endpoint-one', config)
-            .then(resp => resp.json())
-            .then(this.setApiResponse)
-            .catch(this.setError);
-    }
 
     render() {
         const { error, apiResponse } = this.state;
@@ -38,7 +31,7 @@ class AuthPage extends Component {
                 {apiResponse &&
                     <pre style={{ color: 'red' }}>Api response : {JSON.stringify(apiResponse, null, 4)}</pre>}
 
-                <button onClick={this.callApi}>
+                <button onClick={this.getOne}>
                     Call API
                 </button>
             </div>
@@ -46,4 +39,4 @@ class AuthPage extends Component {
     }
 }
 
-export default withAuthentication(withContext(AuthPage));
+export default withContext(withAuthentication(AuthPage));

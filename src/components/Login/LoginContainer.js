@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Login from './Login';
 import { login } from '../../api/UserApi';
-import { withContext } from '../../context';
 
 class LoginContainer extends Component {
     state = {
@@ -23,7 +22,6 @@ class LoginContainer extends Component {
         this.setIsLoading(true);
 
         login(email, password)
-            .then(this.props.setAuthToken)
             .then(this.forwardToAuthPage)
             .catch(this.onError);
     }
@@ -40,4 +38,4 @@ class LoginContainer extends Component {
     }
 }
 
-export default withContext(LoginContainer);
+export default LoginContainer;
