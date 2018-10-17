@@ -2,44 +2,10 @@
     width: 50%;
     margin: auto;
 
-    input {
-        display: block;
-        width: 100%;
-        margin: 1rem 0;
-        padding-left: 0.5rem;
-
-        color: $cyan;
-        background: $selection;
-        border: 0px;
-        box-shadow: 0 0 1px 2px rgba($current, 0.5);
-
-        &::placeholder {
-            color: $cyan;
-            opacity: 0.6;
-            font-size: 0.8rem;
-        }
-
-        &[type=submit] {
-            width: 30%;
-            margin-left: 70%;
-            transition: padding 500ms;
-        }
-    }
 
     small {
         color: $comment;
         margin-top: -0.8rem;
-    }
-
-    &.loading {
-        input:not([type=submit]) {
-            color: rgba($cyan, 0.3);
-        }
-        input[type=submit] {
-            margin-top: 0;
-            padding-right: 1.5rem;
-            display: inline-block;
-        }
     }
 
     @include media-breakpoint-up(xs) {
@@ -53,5 +19,41 @@
     }
     @include media-breakpoint-up(lg) {
         width: 50%;
+    }
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    padding-left: 0.5rem;
+
+    color: $cyan;
+    background: $selection;
+    border: 0px;
+    box-shadow: 0 0 1px 2px rgba($current, 0.5);
+
+    &::placeholder {
+        color: $cyan;
+        opacity: 0.6;
+        font-size: 0.8rem;
+    }
+
+    &[type=submit] {
+        width: 30%;
+        margin-left: 70%;
+        transition: padding 500ms;
+    }
+}
+
+
+.loading {
+    input:not([type=submit]) {
+        color: rgba($cyan, 0.3);
+    }
+    input[type=submit] {
+        margin-top: 0;
+        padding-right: 1.5rem;
+        display: inline-block;
     }
 }
