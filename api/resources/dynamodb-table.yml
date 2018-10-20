@@ -1,0 +1,16 @@
+Type: AWS::DynamoDB::Table
+Properties:
+  TableName: test-table
+  AttributeDefinitions:
+    - AttributeName: "UserId"
+      AttributeType: "S"
+    - AttributeName: "Key"
+      AttributeType: "S"
+  KeySchema:
+    - AttributeName: "UserId"
+      KeyType: "HASH"
+    - AttributeName: "Key"
+      KeyType: "RANGE"
+  ProvisionedThroughput:
+    ReadCapacityUnits: 5
+    WriteCapacityUnits: 5

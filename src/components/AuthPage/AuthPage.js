@@ -15,10 +15,19 @@ class AuthPage extends Component {
     setLoading = isLoading => this.setState({ isLoading })
     api = TestApi({ authToken: this.props.authToken })
 
-    callApi = () => {
+    getData = () => {
         this.setLoading(true);
 
-        this.api.getOne()
+        this.api.get()
+            .then(this.setApiResponse)
+            .then(() => this.setLoading(false))
+            .catch(this.error);
+    }
+
+    postData = data => {
+        this.setLoading(true);
+
+        this.api.post(data)
             .then(this.setApiResponse)
             .then(() => this.setLoading(false))
             .catch(this.error);
@@ -40,9 +49,9 @@ class AuthPage extends Component {
                     <pre style={{ color: 'red' }}>Api response : {JSON.stringify(apiResponse, null, 4)}</pre>}
 
                 <SubmitButton
-                    onClick={this.callApi}
+                    onClick={() => this.postData({ key: '28-10-2018', value: '74950,1' })}
                     isLoading={isLoading}
-                    value='Call API' />
+                    value='Post data' />
             </div>
         );
     }

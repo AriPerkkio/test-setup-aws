@@ -20,6 +20,11 @@ Properties:
     - AllowedMethods:
       - GET
       - HEAD
+      - OPTIONS
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
       MinTTL: "0"
       MaxTTL: "0"
       DefaultTTL: "0"

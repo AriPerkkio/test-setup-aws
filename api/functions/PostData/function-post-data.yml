@@ -1,0 +1,9 @@
+handler: functions/PostData/handler.postData
+events:
+  - http:
+      path: api/generic-data
+      method: post
+      authorizer:
+        type: COGNITO_USER_POOLS
+        authorizerId:
+          Ref: Authorizer

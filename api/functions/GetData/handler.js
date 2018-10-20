@@ -1,8 +1,9 @@
-module.exports.handler = async (event, context) => ({
+module.exports.getData = async (event, context) => ({
     statusCode: 200,
     body: JSON.stringify({
         data: 'Response one',
         timestamp: new Date().toString(),
-        user: event.requestContext.authorizer.claims['cognito:username']
+        event,
+        context
     })
 });

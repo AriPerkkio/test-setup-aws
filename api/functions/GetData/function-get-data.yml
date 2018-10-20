@@ -1,0 +1,9 @@
+handler: functions/GetData/handler.getData
+events:
+  - http:
+      path: api/generic-data
+      method: get
+      authorizer:
+        type: COGNITO_USER_POOLS
+        authorizerId:
+          Ref: Authorizer

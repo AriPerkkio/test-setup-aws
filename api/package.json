@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "deploy": "serverless deploy -v",
+    "deploy:get-data": "serverless deploy function --function getData",
+    "deploy:post-data": "serverless deploy function --function postData",
+    "undeploy": "serverless remove",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

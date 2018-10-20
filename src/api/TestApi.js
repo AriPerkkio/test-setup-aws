@@ -1,19 +1,23 @@
-const generateRequest = resource => config => () =>
-    fetch(`/api/${resource}`, config)
+const generateRequest = config =>
+    fetch(`/api/generic-data`, config)
         .then(resp => resp.json());
 
 const TestApi = ({
     authToken
 }) => {
-    const config = {
+    const config = body => ({
         headers: {
-            'X-Authorization': authToken
-        }
-    };
+            'X-Authorization': authToken,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        method: body ? 'POST' : 'GET',
+        body: body ? JSON.stringify(body) : undefined
+    });
 
     return {
-        getOne: generateRequest('endpoint-one')(config),
-        getTwo: generateRequest('endpoint-two')(config)
+        get: () => generateRequest(config()),
+        post: body => generateRequest(config(body))
     };
 };
 

@@ -15,26 +15,8 @@ provider:
   endpointType: regional
 
 functions:
-  functionOne:
-    handler: functions/handlers.one
-    events:
-      - http:
-          path: api/endpoint-one
-          method: get
-          authorizer:
-            type: COGNITO_USER_POOLS
-            authorizerId:
-              Ref: Authorizer
-  functionTwo:
-    handler: functions/handlers.two
-    events:
-      - http:
-          path: api/endpoint-two
-          method: get
-          authorizer:
-            type: COGNITO_USER_POOLS
-            authorizerId:
-              Ref: Authorizer
+  getData: ${file(./functions/GetData/function-get-data.yml)}
+  postData: ${file(./functions/PostData/function-post-data.yml)}
 
 resources:
   Resources:
@@ -42,6 +24,7 @@ resources:
     Authorizer: ${file(./resources/cognito-authorizer.yml)}
     UserPool: ${file(./resources/cognito-userpool.yml)}
     UserPoolClient: ${file(./resources/cognito-userpoolclient.yml)}
+    DynamoDbTable: ${file(./resources/dynamodb-table.yml)}
 
   Outputs:
     CloudFrontDomainName:
