@@ -1,13 +1,10 @@
 const { db, getTable } = require('../utils');
 
-module.exports.getData = async event => {
-    const { userId } = parseRequest(event);
-
-    return await getData(userId)
+module.exports.getData = async event =>
+    await getData(event)
         .then(parseQueryResult)
         .then(onSuccess)
         .catch(onFailure);
-};
 
 const parseRequest = event => ({
     userId: event.requestContext.authorizer.claims.sub,
@@ -18,11 +15,16 @@ const parseQueryResult = ({ Items }) => Items.map(({ key, value }) => ({
     value: value.S
 }));
 
-const getData = userId => new Promise((resolve, reject) => {
-    const item = generateQueryParams(userId);
+const getData = event => new Promise((resolve, reject) => {
+    try {
+        const { userId } = parseRequest(event);
+        const item = generateQueryParams(userId);
 
-    db.query(item, (err, result) =>
-        err ? reject(err) : resolve(result));
+        db.query(item, (err, result) =>
+            err ? reject(err) : resolve(result));
+    } catch (e) {
+        reject(e.message);
+    }
 });
 
 const generateQueryParams = userId => ({

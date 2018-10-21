@@ -5,7 +5,6 @@ module.exports.postData = async event =>
         .then(onSuccess)
         .catch(onFailure);
 
-
 const parseRequest = event => ({
     userId: event.requestContext.authorizer.claims.sub,
     value: JSON.parse(event.body).value

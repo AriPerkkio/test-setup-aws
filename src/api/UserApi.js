@@ -31,7 +31,7 @@ const verify = (email, verificationCode) =>
 
 const signup = (email, password) =>
     new Promise((resolve, reject) => {
-        const attributeList = [ new CognitoUserAttribute({ Name: 'email', Value: email }) ];
+        const attributeList = [new CognitoUserAttribute({ Name: 'email', Value: email })];
         const handler = resultHandler(resolve, reject);
 
         userPool.signUp(email, password, attributeList, null, handler);
@@ -50,9 +50,7 @@ const login = (email, password) =>
 
 const logout = () => userPool.getCurrentUser().signOut();
 
-const isLoggedIn = () => {
-    return userPool.getCurrentUser() != null;
-};
+const isLoggedIn = () => userPool.getCurrentUser() != null;
 
 export {
     signup,

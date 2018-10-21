@@ -19,9 +19,9 @@ class AuthenticationWrapper extends Component {
         const { history, setAuthToken } = this.props;
         const user = userPool.getCurrentUser();
 
-        if(user != null) {
+        if (user != null) {
             user.getSession((err, session) => {
-                if(err || !session || !session.isValid()) {
+                if (err || !session || !session.isValid()) {
                     history.push('/login');
                 } else {
                     setAuthToken(session.getIdToken().jwtToken);
@@ -34,7 +34,7 @@ class AuthenticationWrapper extends Component {
     }
 
     render() {
-        if(!this.state.isAuthenticated) {
+        if (!this.state.isAuthenticated) {
             return null;
         }
 
@@ -46,9 +46,10 @@ class AuthenticationWrapper extends Component {
     }
 }
 
+// Hoc components which require authentication. If user is not authenticated, forward to /login
 const withAuthentication = Component => ({ setAuthToken, history, ...props }) =>
-    <AuthenticationWrapper { ...{ setAuthToken, history } }>
-        <Component { ...{ history, ...props } } />
+    <AuthenticationWrapper {...{ setAuthToken, history }}>
+        <Component {...{ history, ...props }} />
     </AuthenticationWrapper>;
 
 const getAuthToken = () =>
@@ -56,7 +57,7 @@ const getAuthToken = () =>
         const user = userPool.getCurrentUser();
 
         user && user.getSession((err, session) => {
-            if(err) return reject(err);
+            if (err) return reject(err);
 
             resolve(session.getIdToken().jwtToken);
         });
