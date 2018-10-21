@@ -1,60 +1,47 @@
-import React, { Component } from 'react';
+import React, { createRef } from 'react';
 
-import { withContext } from '../../context';
-import { withAuthentication } from '../../authentication';
 import SubmitButton from '../common/SubmitButton';
-import TestApi from '../../api/TestApi';
 
-class AuthPage extends Component {
-    state = {
-        response: null,
-        isLoading: false,
-        error: null
-    }
+const inputRef = createRef();
 
-    setLoading = isLoading => this.setState({ isLoading })
-    api = TestApi({ authToken: this.props.authToken })
+const AuthPage = ({
+    getData,
+    postData,
+    response,
+    isLoading,
+    isSending,
+    queryError,
+    postError
+}) => {
+    return (
+        <div id='auth-page' className={isLoading ? 'loading' : ''}>
+            <h2>Auth page</h2>
 
-    getData = () => {
-        this.setLoading(true);
+            <h4>Get data</h4>
+            {queryError && <p>Error : {queryError.toString()}</p>}
 
-        this.api.get()
-            .then(this.setApiResponse)
-            .then(() => this.setLoading(false))
-            .catch(this.error);
-    }
+            {response &&
+                <pre style={{ color: 'red' }}>Api response : {JSON.stringify(response, null, 4)}</pre>}
 
-    postData = data => {
-        this.setLoading(true);
+            <SubmitButton
+                onClick={getData}
+                isLoading={isLoading}
+                value='Get data' />
 
-        this.api.post(data)
-            .then(this.setApiResponse)
-            .then(() => this.setLoading(false))
-            .catch(this.error);
-    }
+            <h4>Send data</h4>
+            {postError && <p>Error : {postError.toString()}</p>}
 
-    setApiResponse = apiResponse => this.setState({ apiResponse })
-    setError = error => this.setState({ error })
+            <input
+                ref={inputRef}
+                type="text" />
 
-    render() {
-        const { error, apiResponse, isLoading } = this.state;
+            <SubmitButton
+                onClick={() => postData({ value: inputRef.current.value })}
+                isLoading={isSending}
+                value='Send data' />
 
-        return (
-            <div id='auth-page' className={isLoading ? 'loading' : ''}>
-                <h2>Auth page</h2>
+        </div>
+    );
+};
 
-                {error && <p>Error : {error.toString()}</p>}
-
-                {apiResponse &&
-                    <pre style={{ color: 'red' }}>Api response : {JSON.stringify(apiResponse, null, 4)}</pre>}
-
-                <SubmitButton
-                    onClick={() => this.postData({ key: '28-10-2018', value: '74950,1' })}
-                    isLoading={isLoading}
-                    value='Post data' />
-            </div>
-        );
-    }
-}
-
-export default withContext(withAuthentication(AuthPage));
+export default AuthPage;

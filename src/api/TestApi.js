@@ -1,5 +1,5 @@
 const generateRequest = config =>
-    fetch(`/api/generic-data`, config)
+    fetch(`/api/generic-data?time=${new Date().getTime()}`, config)
         .then(resp => resp.json());
 
 const TestApi = ({

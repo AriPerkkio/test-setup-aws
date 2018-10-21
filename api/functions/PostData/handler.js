@@ -1,33 +1,49 @@
-module.exports.postData = async (event, context) => {
-    let statusCode = 200;
-    let body;
-    let error;
+const { db, getTable } = require('../utils');
 
-    try {
-        const { userId, data } = parseRequest(event);
-        body = {
-            userId,
-            data
-        };
-    } catch (e) {
-        statusCode = 500;
-        error = e;
-    }
+module.exports.postData = async event =>
+    await addData(event)
+        .then(onSuccess)
+        .catch(onFailure);
 
-    if (error) {
-        body.error = error;
-    }
-
-    return {
-        statusCode,
-        body: JSON.stringify({
-            ...body,
-            timestamp: new Date().toString()
-        })
-    };
-};
 
 const parseRequest = event => ({
     userId: event.requestContext.authorizer.claims.sub,
-    data: JSON.parse(event.body)
+    value: JSON.parse(event.body).value
+});
+
+const addData = event => new Promise((resolve, reject) => {
+    try {
+        const { userId, value } = parseRequest(event);
+        const item = generateItem(userId, value);
+
+        db.putItem(item, (err, result) =>
+            err ? reject(err) : resolve(result));
+    } catch (e) {
+        reject(e.message);
+    }
+});
+
+const generateItem = (userId, value) => ({
+    ...getTable(),
+    Item: {
+        userId: { S: userId },
+        value: { S: value },
+        key: { S: new Date().getTime().toString() }
+    }
+});
+
+const onSuccess = data => ({
+    statusCode: 200,
+    body: JSON.stringify({
+        ...data,
+        timestamp: new Date().toString()
+    })
+});
+
+const onFailure = error => ({
+    statusCode: 500,
+    body: JSON.stringify({
+        error,
+        timestamp: new Date().toString()
+    })
 });
