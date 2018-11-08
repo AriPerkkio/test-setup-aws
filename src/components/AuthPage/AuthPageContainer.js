@@ -40,7 +40,6 @@ class AuthPageContainer extends Component {
             .catch(this.setPostError);
     }
 
-
     render() {
         const { getData, postData } = this;
 

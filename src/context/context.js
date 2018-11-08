@@ -5,13 +5,19 @@ const { Provider, Consumer } = createContext();
 class ContextProvider extends Component {
     state = {
         authToken: null,
-        setAuthToken: authToken => this.setState({ authToken }),
         ...this.props
     }
 
+    setAuthToken = authToken => this.setState({ authToken })
+
     render() {
+        const context = {
+            ...this.state,
+            setAuthToken: this.setAuthToken
+        };
+
         return (
-            <Provider value={this.state}>
+            <Provider value={context}>
                 {this.props.children}
             </Provider>
         );
@@ -20,7 +26,7 @@ class ContextProvider extends Component {
 
 const withContext = Component => props =>
     <Consumer>
-        {ctx => <Component { ...ctx } {...props} /> }
+        {ctx => <Component {...ctx} {...props} />}
     </Consumer>;
 
 export {

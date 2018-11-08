@@ -1,41 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import Login from './Login';
 import { login } from '../../api/UserApi';
 
-class LoginContainer extends Component {
-    state = {
-        error: null,
-        isLoading: false
-    }
+const LoginContainer = ({ history }) => {
 
-    setIsLoading = isLoading => this.setState({ isLoading })
-    onError = error => this.setState({ error, isLoading: false })
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    forwardToAuthPage = () => {
-        this.setIsLoading(false);
+    const onSuccess = () => {
+        setLoading(false);
+        history.push('/auth-page');
+    };
 
-        this.props.history.push('/auth-page');
-    }
+    const onError = e => {
+        setLoading(false);
+        setError(e);
+    };
 
-    onSubmit = ({email, password}) => {
-        this.setIsLoading(true);
+    const onSubmit = ({ email, password }) => {
+        setLoading(true);
 
         login(email, password)
-            .then(this.forwardToAuthPage)
-            .catch(this.onError);
-    }
+            .then(onSuccess)
+            .catch(onError);
+    };
 
-    render() {
-        const { isLoading, error } = this.state;
-
-        return (
-            <Login
-                onSubmit={this.onSubmit}
-                isLoading={isLoading}
-                error={error} />
-        );
-    }
-}
+    return (
+        <Login {...{
+            onSubmit,
+            loading,
+            error
+        }} />
+    );
+};
 
 export default LoginContainer;

@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 
+import ResultRow from './ResultRow';
 import SubmitButton from '../common/SubmitButton';
 
 const inputRef = createRef();
@@ -13,15 +14,19 @@ const AuthPage = ({
     queryError,
     postError
 }) => {
+
     return (
-        <div id='auth-page' className={isLoading ? 'loading' : ''}>
+        <div id='auth-page' className={isLoading || isSending ? 'loading' : ''}>
             <h2>Auth page</h2>
 
             <h4>Get data</h4>
             {queryError && <p>Error : {queryError.toString()}</p>}
 
-            {response &&
-                <pre style={{ color: 'red' }}>Api response : {JSON.stringify(response, null, 4)}</pre>}
+            {response && response.data &&
+                <ul>
+                    {response.data.map(({ key: time, value }, key) =>
+                        <ResultRow key={key} {...{ time, value }} />)}
+                </ul>}
 
             <SubmitButton
                 onClick={getData}

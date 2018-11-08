@@ -12,9 +12,9 @@ const preventEventSubmit = onSubmit => event => {
 
 const Login = ({
     onSubmit,
-    isLoading,
+    loading,
     error
-})  => {
+}) => {
 
     return (
         <Fragment>
@@ -25,22 +25,22 @@ const Login = ({
 
             <form
                 onSubmit={preventEventSubmit(onSubmit)}
-                className={`generic-form ${isLoading ? 'loading' : ''}`}>
+                className={`generic-form ${loading ? 'loading' : ''}`}>
                 <input
                     type='text'
                     placeholder='Email'
-                    disabled={isLoading}
-                    className='form-control'/>
+                    disabled={loading}
+                    className='form-control' />
 
                 <input
                     type='password'
                     placeholder='Password'
-                    disabled={isLoading}
-                    className='form-control'/>
+                    disabled={loading}
+                    className='form-control' />
 
                 <SubmitButton
                     value='Login'
-                    isLoading={isLoading} />
+                    isLoading={loading} />
             </form>
         </Fragment>
     );

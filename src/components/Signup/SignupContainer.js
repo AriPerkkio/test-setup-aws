@@ -1,51 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import Signup from './Signup';
 import { verify, signup } from '../../api/UserApi';
 
-export default class SignupContainer extends Component {
-    state = {
-        isLoading: false,
-        error: null,
-        showVerify: false
-    }
+const SignupContainer = ({ history }) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [showVerify, setShowVerify] = useState(false);
 
-    setIsLoading = isLoading => this.setState({ isLoading })
-    setShowVerify = () => this.setState({ showVerify: true, isLoading: false })
-    onError = error => this.setState({ error, isLoading: false })
 
-    forwardToLogin = () => {
-        this.setIsLoading(false);
+    const onSignupSuccess = () => {
+        setLoading(false);
+        setShowVerify(true);
+    };
 
-        this.props.history.push("/login");
-    }
+    const onError = e => {
+        setLoading(false);
+        setError(e);
+    };
 
-    onVerify = ({ email, verificationCode }) => {
-        this.setIsLoading(true);
+    const onVerifySuccess = () => {
+        setLoading(false);
+        history.push("/login");
+    };
+
+    const onVerify = ({ email, verificationCode }) => {
+        setLoading(true);
 
         verify(email, verificationCode)
-            .then(this.forwardToLogin)
-            .catch(this.onError);
-    }
+            .then(onVerifySuccess)
+            .catch(onError);
+    };
 
-    onSignup = ({ email, password }) => {
-        this.setIsLoading(true);
+    const onSignup = ({ email, password }) => {
+        setLoading(true);
 
         signup(email, password)
-            .then(this.setShowVerify)
-            .catch(this.onError);
-    }
+            .then(onSignupSuccess)
+            .catch(onError);
+    };
 
-    render() {
-        const { isLoading, error, showVerify } = this.state;
+    return (
+        <Signup {...{
+            onSignup,
+            onVerify,
+            loading,
+            error,
+            showVerify
+        }} />
+    );
+};
 
-        return (
-            <Signup
-                onSignUp={this.onSignup}
-                onVerify={this.onVerify}
-                isLoading={isLoading}
-                error={error}
-                showVerify={showVerify} />
-        );
-    }
-}
+export default SignupContainer;

@@ -12,15 +12,15 @@ const preventEventSubmit = onSubmit => event => {
 };
 
 const Signup = ({
-    onSignUp,
+    onSignup,
     onVerify,
-    isLoading,
+    loading,
     error,
     showVerify
 }) => {
     const onSubmit = showVerify ?
         onVerify :
-        onSignUp;
+        onSignup;
 
     const buttonText = showVerify ?
         'Verify' :
@@ -34,18 +34,18 @@ const Signup = ({
                 </div>}
 
             <form onSubmit={preventEventSubmit(onSubmit)}
-                className={`generic-form ${isLoading ? 'loading' : ''}`}>
+                className={`generic-form ${loading ? 'loading' : ''}`}>
                 <input
                     type='text'
                     placeholder='Email'
                     className='form-control'
-                    disabled={showVerify}/>
+                    disabled={showVerify} />
 
                 <input
                     type='password'
                     placeholder='Password'
                     className='form-control'
-                    style={{ display: showVerify ? 'none' : 'block' }}/>
+                    style={{ display: showVerify ? 'none' : 'block' }} />
 
                 <input
                     type='text'
@@ -61,7 +61,7 @@ const Signup = ({
 
                 <SubmitButton
                     value={buttonText}
-                    isLoading={isLoading} />
+                    isLoading={loading} />
             </form>
         </Fragment>
     );
