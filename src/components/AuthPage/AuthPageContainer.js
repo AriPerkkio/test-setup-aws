@@ -1,56 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import AuthPage from './AuthPage';
 import { withContext } from '../../context';
 import { withAuthentication } from '../../authentication';
 import TestApi from '../../api/TestApi';
 
-class AuthPageContainer extends Component {
-    state = {
-        response: null,
-        isLoading: false,
-        isSending: false,
-        queryError: null,
-        postError: null
-    }
+const AuthPageContainer = ({
+    authToken
+}) => {
+    const [response, setResponse] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [sending, setSending] = useState(false);
+    const [queryError, setQueryError] = useState(null);
+    const [postError, setPostError] = useState(null);
 
-    setLoading = isLoading => this.setState({ isLoading })
-    setSending = isSending => this.setState({ isSending })
-    setResponse = response => this.setState({ response })
-    setQueryError = queryError => this.setState({ queryError })
-    setPostError = postError => this.setState({ postError })
+    const api = TestApi({ authToken });
 
-    api = TestApi({ authToken: this.props.authToken })
+    const getData = () => {
+        setLoading(true);
 
-    getData = () => {
-        this.setLoading(true);
+        api.get()
+            .then(setResponse)
+            .then(() => setLoading(false))
+            .catch(setQueryError);
+    };
 
-        this.api.get()
-            .then(this.setResponse)
-            .then(() => this.setLoading(false))
-            .catch(this.setQueryError);
-    }
+    const postData = data => {
+        setSending(true);
 
-    postData = data => {
-        this.setSending(true);
+        api.post(data)
+            .then(() => setSending(false))
+            .catch(setPostError);
+    };
 
-        this.api.post(data)
-            .then(console.log)
-            .then(() => this.setSending(false))
-            .catch(this.setPostError);
-    }
-
-    render() {
-        const { getData, postData } = this;
-
-        return (
-            <AuthPage {...{
-                getData,
-                postData,
-                ...this.state
-            }} />
-        );
-    }
-}
+    return (
+        <AuthPage {...{
+            getData,
+            postData,
+            response,
+            loading,
+            sending,
+            queryError,
+            postError,
+        }} />
+    );
+};
 
 export default withContext(withAuthentication(AuthPageContainer));

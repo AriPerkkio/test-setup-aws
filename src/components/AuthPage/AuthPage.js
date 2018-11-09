@@ -9,14 +9,14 @@ const AuthPage = ({
     getData,
     postData,
     response,
-    isLoading,
-    isSending,
+    loading,
+    sending,
     queryError,
     postError
 }) => {
 
     return (
-        <div id='auth-page' className={isLoading || isSending ? 'loading' : ''}>
+        <div id='auth-page' className={loading || sending ? 'loading' : ''}>
             <h2>Auth page</h2>
 
             <h4>Get data</h4>
@@ -30,7 +30,7 @@ const AuthPage = ({
 
             <SubmitButton
                 onClick={getData}
-                isLoading={isLoading}
+                isLoading={loading}
                 value='Get data' />
 
             <h4>Send data</h4>
@@ -42,9 +42,8 @@ const AuthPage = ({
 
             <SubmitButton
                 onClick={() => postData({ value: inputRef.current.value })}
-                isLoading={isSending}
+                isLoading={sending}
                 value='Send data' />
-
         </div>
     );
 };
