@@ -39,8 +39,8 @@ const Login = ({
                     className='form-control' />
 
                 <SubmitButton
-                    value='Login'
-                    isLoading={loading} />
+                    text='Login'
+                    loading={loading} />
             </form>
         </Fragment>
     );

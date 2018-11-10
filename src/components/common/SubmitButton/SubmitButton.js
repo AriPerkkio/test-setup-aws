@@ -1,21 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const SubmitButton = ({
-    isLoading,
+    loading,
     className,
+    text,
     ...props
 }) => {
-    return (
-        <Fragment>
-            <input
-                id='submit'
-                type='submit'
-                disabled={isLoading}
-                className={`btn btn-primary ${className ? className : ''}`}
-                {...props} />
+    const classNames = [
+        'btn btn-primary', // Bootstrap
+        'btn-submit',
+        loading ? 'btn-submit--loading' : '',
+        className,
+    ].join(' ').trim();
 
-            <span className={isLoading ? 'loader' : ''} />
-        </Fragment>
+    return (
+        <button
+            disabled={loading}
+            className={classNames}
+            {...props}>
+            {text}
+        </button>
     );
 };
 

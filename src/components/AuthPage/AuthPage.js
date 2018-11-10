@@ -30,8 +30,8 @@ const AuthPage = ({
 
             <SubmitButton
                 onClick={getData}
-                isLoading={loading}
-                value='Get data' />
+                loading={loading}
+                text='Get data' />
 
             <h4>Send data</h4>
             {postError && <p>Error : {postError.toString()}</p>}
@@ -42,8 +42,8 @@ const AuthPage = ({
 
             <SubmitButton
                 onClick={() => postData({ value: inputRef.current.value })}
-                isLoading={sending}
-                value='Send data' />
+                loading={sending}
+                text='Send data' />
         </div>
     );
 };

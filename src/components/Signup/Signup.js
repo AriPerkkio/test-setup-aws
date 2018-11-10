@@ -60,8 +60,8 @@ const Signup = ({
                 </small>
 
                 <SubmitButton
-                    value={buttonText}
-                    isLoading={loading} />
+                    text={buttonText}
+                    loading={loading} />
             </form>
         </Fragment>
     );

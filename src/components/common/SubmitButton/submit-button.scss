@@ -1,24 +1,36 @@
-.loader:after {
-    position: relative;
+.btn-submit {
     display: inline-block;
-    margin-left: -1.5rem;
-    margin-bottom: 0.4rem;
-    content: '';
+    margin: 1rem 0;
 
-    width: 0.8rem;
-    height: 0.8rem;
-    border: 1px solid $cyan;
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    box-sizing: border-box;
-    animation: rotate 3s ease-in-out infinite;
-    transform: rotate(-200deg);
-    @keyframes rotate {
-        0% { border-width: 1px; }
-        25% { border-width: 1px; }
-        50% { transform: rotate(115deg); border-width: 1px; }
-        75% { border-width: 1px;}
-        100% { border-width: 1px;}
+    color: $cyan;
+    background: $selection;
+    border: 0px;
+    box-shadow: 0 0 1px 2px rgba($current, 0.5);
+
+    &::after {
+        opacity: 0;
+    }
+
+    &--loading::after {
+        content: '';
+        display: inline-block;
+        opacity: 1;
+        margin-left: .5rem;
+        margin-bottom: -.2rem;
+        width: 1rem;
+        height: 1rem;
+
+        border: 1px solid $cyan;
+        border-radius: 50%;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+
+        animation: rotate .8s linear infinite;
+        transition: opacity .2s;
+
+        @keyframes rotate {
+            0% {transform:rotate(0deg);}
+            100% {transform:rotate(360deg);}
+        }
     }
 }
