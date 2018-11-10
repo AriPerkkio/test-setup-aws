@@ -36,22 +36,28 @@ const Signup = ({
             <form onSubmit={preventEventSubmit(onSubmit)}
                 className={`generic-form ${loading ? 'loading' : ''}`}>
                 <input
+                    id="email"
                     type='text'
                     placeholder='Email'
                     className='form-control'
                     disabled={showVerify} />
+                <label htmlFor="email">Email</label>
 
                 <input
+                    id="password"
                     type='password'
                     placeholder='Password'
                     className='form-control'
                     style={{ display: showVerify ? 'none' : 'block' }} />
+                <label htmlFor="password">Password</label>
 
                 <input
+                    id="verification-code"
                     type='text'
                     placeholder='Verification code'
                     className='form-control'
                     style={{ display: showVerify ? 'block' : 'none' }} />
+                <label htmlFor="verification-code">Verification code</label>
 
                 <small
                     className='form-text text-muted'

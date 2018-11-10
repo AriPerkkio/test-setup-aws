@@ -26,17 +26,22 @@ const Login = ({
             <form
                 onSubmit={preventEventSubmit(onSubmit)}
                 className={`generic-form ${loading ? 'loading' : ''}`}>
+
                 <input
-                    type='text'
+                    id="email"
+                    type='email'
                     placeholder='Email'
                     disabled={loading}
                     className='form-control' />
+                <label htmlFor="email">Email</label>
 
                 <input
+                    id="password"
                     type='password'
                     placeholder='Password'
                     disabled={loading}
                     className='form-control' />
+                <label htmlFor="password">Password</label>
 
                 <SubmitButton
                     text='Login'
