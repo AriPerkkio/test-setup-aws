@@ -6,12 +6,11 @@ import { verify, signup } from '../../api/UserApi';
 const SignupContainer = ({ history }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [showVerify, setShowVerify] = useState(false);
-
+    const [isVerifying, setIsVerifying] = useState(false);
 
     const onSignupSuccess = () => {
         setLoading(false);
-        setShowVerify(true);
+        setIsVerifying(true);
     };
 
     const onError = e => {
@@ -46,7 +45,7 @@ const SignupContainer = ({ history }) => {
             onVerify,
             loading,
             error,
-            showVerify
+            isVerifying
         }} />
     );
 };

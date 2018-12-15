@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Indie Flower', cursive;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: $color-yellow;
+    padding: 3rem;
+}
+
+::selection {
+    color: $color-yellow;
+    background-color: $color-black;
+}

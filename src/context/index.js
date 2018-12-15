@@ -1,3 +1,1 @@
-import { ContextProvider, withContext } from './context';
-
-export { ContextProvider, withContext };
+export { ContextProvider, withContext } from './context';

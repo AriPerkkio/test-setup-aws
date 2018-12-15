@@ -7,7 +7,6 @@ const SubmitButton = ({
     ...props
 }) => {
     const classNames = [
-        'btn btn-primary', // Bootstrap
         'btn-submit',
         loading ? 'btn-submit--loading' : '',
         className,
