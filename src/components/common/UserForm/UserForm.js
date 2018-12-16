@@ -4,6 +4,7 @@ const BASE_CLASS = 'user-form';
 
 const UserForm = ({
     onSubmit,
+    error,
     className,
     loading,
     children,
@@ -23,6 +24,11 @@ const UserForm = ({
             {Children.map(children, child =>
                 cloneElement(child, { loading }))}
 
+            {error &&
+                <div className={`${BASE_CLASS}--errors`}>
+                    Error: {error.message}
+                </div>}
+
         </form>
     );
 };
@@ -38,13 +44,13 @@ const preventEventSubmit = onSubmit => event => {
 
 const formInputReducer = (data, input) => {
     if (input.name && input.value) {
-        data[nameToCamelCase(input.name)] = input.value;
+        data[toLowerCamelCase(input.name)] = input.value;
     }
 
     return data;
 };
 
-const nameToCamelCase = name => {
+const toLowerCamelCase = name => {
     const first = name.charAt(0).toLowerCase();
     const rest = name.slice(1).split(' ').join('');
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import UserForm, { UserFormInput } from '../common/UserForm';
-import SubmitButton from '../common/SubmitButton';
+import UserForm, { UserFormInput, UserFormSubmit } from '../common/UserForm';
 
 const Login = ({
     onSubmit,
@@ -13,7 +12,7 @@ const Login = ({
         <UserForm {...{ onSubmit, loading, error }}>
             <UserFormInput name='Email' />
             <UserFormInput name='Password' />
-            <SubmitButton text='Login' />
+            <UserFormSubmit text='Login' />
         </UserForm>
     );
 };

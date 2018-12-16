@@ -1,5 +1,7 @@
 import React from 'react';
 
+const BASE_CLASS = 'user-form-submit';
+
 const SubmitButton = ({
     loading,
     className,
@@ -7,8 +9,8 @@ const SubmitButton = ({
     ...props
 }) => {
     const classNames = [
-        'btn-submit',
-        loading ? 'btn-submit--loading' : '',
+        BASE_CLASS,
+        loading ? `${BASE_CLASS}--loading` : '',
         className,
     ].join(' ').trim();
 

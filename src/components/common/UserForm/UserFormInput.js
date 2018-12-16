@@ -28,7 +28,11 @@ const UserFormInput = ({
                 placeholder={name}
                 disabled={loading} />
 
-            <label htmlFor={id}>{name}</label>
+            <label
+                htmlFor={id}
+                className={`${BASE_CLASS}--label`}>
+                {name}
+            </label>
         </>
     );
 };

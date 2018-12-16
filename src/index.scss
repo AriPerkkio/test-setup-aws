@@ -3,5 +3,9 @@
 @import 'scss/abstract/variables';
 @import 'scss/abstract/mixins';
 
+@import 'scss/base/animations';
 @import 'scss/base/base';
 @import 'scss/base/utilities';
+
+@import 'components/Signup/signup';
+@import 'components/common/UserForm/user-form';

@@ -10,6 +10,7 @@ const SignupContainer = ({ history }) => {
 
     const onSignupSuccess = () => {
         setLoading(false);
+        setError(null);
         setIsVerifying(true);
     };
 
@@ -20,6 +21,7 @@ const SignupContainer = ({ history }) => {
 
     const onVerifySuccess = () => {
         setLoading(false);
+        setError(null);
         history.push("/login");
     };
 

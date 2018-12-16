@@ -1,7 +1,6 @@
 import React, { createRef } from 'react';
 
 import ResultRow from './ResultRow';
-import SubmitButton from '../common/SubmitButton';
 
 const inputRef = createRef();
 
@@ -28,7 +27,7 @@ const AuthPage = ({
                         <ResultRow key={key} {...{ time, value }} />)}
                 </ul>}
 
-            <SubmitButton
+            <button
                 onClick={getData}
                 loading={loading}
                 text='Get data' />

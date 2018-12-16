@@ -1,0 +1,102 @@
+$base-font-size: 2rem;
+$loading-color: rgba($color-yellow, .7);
+
+.user-form {
+    font-family: $font-primary;
+    font-size: $base-font-size;
+    color: $color-red;
+
+    padding: 3rem;
+    margin: 0 5rem;
+    border-radius: 3rem;
+    border: 0;
+    background-color: $color-pink;
+    box-shadow: 0 1rem 5rem rgba($color-pink, .9);
+
+    display: grid;
+    grid-template-columns: [start] 1fr [center] min-content [end];
+    grid-column-gap: 1rem;
+
+    &--loading {
+
+    }
+
+    &--errors {
+        font-size: $base-font-size * 2;
+        font-weight: 100;
+        color: $color-white;
+    }
+
+    &-submit {
+        grid-column: center / end;
+        display: flex;
+        align-items: center;
+
+        font-size: $base-font-size * 1.5;
+        color: currentColor;
+        background-color: $color-yellow;
+        transition: all .2s;
+
+        border: 0;
+        border-radius: 20%;
+        box-shadow: 0 .5rem 4rem rgba($color-yellow, .5);
+        padding: .2rem 1.5rem;
+
+        &::after { opacity: 0; }
+
+        &--loading {
+            background-color: $loading-color;
+
+            &::after {
+                content: '';
+                margin-left: 1rem;
+                width: $base-font-size / 1.2;
+                height: $base-font-size / 1.2;
+                opacity: 1;
+
+                border: .2rem solid $color-red;
+                border-radius: 50%;
+                border-left-color: transparent;
+                border-bottom-color: transparent;
+                animation: rotate .9s linear infinite;
+            }
+        }
+    }
+
+    &-input {
+        grid-column: start / end;
+        border: 0;
+        border-radius: 1rem;
+        padding: .5rem 0 .5rem 1rem;
+        background-color: $color-yellow;
+        box-shadow: 0 .1rem 2rem rgba($color-yellow, .5);
+
+        &,
+        &::placeholder {
+            font-size: $base-font-size;
+            color: currentColor;
+        }
+
+        &--label {
+            grid-column: start / end;
+            font-size: $base-font-size;
+            padding-left: 1rem;
+
+            visibility: visible;
+            margin-top: 0;
+            margin-bottom: 0;
+            transition: all .2s;
+            color: $color-white;
+        }
+
+        &:placeholder-shown + &--label {
+            visibility: hidden;
+            margin-top: -2rem;
+            margin-bottom: 2rem;
+        }
+
+        &--loading {
+            background-color: $loading-color;
+        }
+    }
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 
-import UserForm, { UserFormInput } from '../common/UserForm';
-import SubmitButton from '../common/SubmitButton';
+import UserForm, { UserFormInput, UserFormSubmit } from '../common/UserForm';
+
+const BASE_CLASS = 'signup';
 
 const Signup = ({
     onSignup,
@@ -26,10 +27,12 @@ const Signup = ({
                 <UserFormInput name='Password' /> :
                 <>
                     <UserFormInput name='Verification Code' />
-                    <small>Verification code was sent to your email</small>
+                    <label className={`${BASE_CLASS}--verify-label`}>
+                        Verification code was sent to your email
+                    </label>
                 </>}
 
-            <SubmitButton text={buttonText} />
+            <UserFormSubmit text={buttonText} />
         </UserForm>
     );
 };
