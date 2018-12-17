@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import { logout, isLoggedIn } from '../../api/UserApi';
 
+const BASE_CLASS = 'navigation-header';
+
 const loggedOutUserNavs = [
     { to: '/login', name: 'Login' },
     { to: '/signup', name: 'Signup' }
@@ -19,9 +21,10 @@ const NavigationHeader = () => {
         loggedOutUserNavs;
 
     return (
-        <nav className="navigation-header">
+        <nav className={BASE_CLASS}>
             {navs.map(({ name, ...props }, key) =>
-                <NavLink { ...{...props, key} }>
+                <NavLink {...{ ...props, key }}
+                    className={`${BASE_CLASS}--link`}>
                     {name}
                 </NavLink>
             )}

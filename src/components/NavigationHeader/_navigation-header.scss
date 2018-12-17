@@ -1,0 +1,19 @@
+.navigation-header {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-column-gap: 2rem;
+    justify-content: end;
+    margin-bottom: 2rem;
+
+    &--link {
+        font-size: 2rem;
+        font-weight: 600;
+        color: $color-yellow;
+        text-decoration: none;
+
+        background-color: $color-pink;
+        padding: .5rem 1rem;
+        border-radius: 45%;
+        box-shadow: 0 .5rem 3rem rgba($color-pink, .7);
+    }
+}

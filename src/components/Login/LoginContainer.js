@@ -10,7 +10,7 @@ const LoginContainer = ({ history }) => {
     const onSuccess = () => {
         setLoading(false);
         setError(null);
-        history.push('/auth-page');
+        history.push('/home');
     };
 
     const onError = e => {

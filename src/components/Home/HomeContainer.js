@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import AuthPage from './AuthPage';
+import Home from './Home';
 import { withContext } from '../../context';
 import { withAuthentication } from '../../authentication';
 import TestApi from '../../api/TestApi';
 
-const AuthPageContainer = ({
+const HomeContainer = ({
     authToken
 }) => {
     const [response, setResponse] = useState(null);
@@ -34,7 +34,7 @@ const AuthPageContainer = ({
     };
 
     return (
-        <AuthPage {...{
+        <Home {...{
             getData,
             postData,
             response,
@@ -46,4 +46,4 @@ const AuthPageContainer = ({
     );
 };
 
-export default withContext(withAuthentication(AuthPageContainer));
+export default withContext(withAuthentication(HomeContainer));
