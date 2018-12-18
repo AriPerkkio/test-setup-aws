@@ -11,7 +11,7 @@ const loggedOutUserNavs = [
 ];
 
 const loggedInUserNavs = [
-    { to: '/auth-page', name: 'Auth Page' },
+    { to: '/home', name: 'Home' },
     { to: 'login', name: 'Logout', onClick: logout }
 ];
 

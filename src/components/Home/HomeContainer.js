@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Home from './Home';
-import { withContext } from '../../context';
-import { withAuthentication } from '../../authentication';
+import { AuthContext } from '../../context';
+import { useAuthentication } from '../../hooks';
 import TestApi from '../../api/TestApi';
 
-const HomeContainer = ({
-    authToken
-}) => {
+const HomeContainer = ({ history }) => {
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
     const [sending, setSending] = useState(false);
     const [queryError, setQueryError] = useState(null);
     const [postError, setPostError] = useState(null);
+
+    const isAuthenticated = useAuthentication(history);
+    const { authToken } = useContext(AuthContext);
 
     const api = TestApi({ authToken });
 
@@ -33,6 +34,10 @@ const HomeContainer = ({
             .catch(setPostError);
     };
 
+    if (!isAuthenticated) {
+        return null;
+    }
+
     return (
         <Home {...{
             getData,
@@ -46,4 +51,4 @@ const HomeContainer = ({
     );
 };
 
-export default withContext(withAuthentication(HomeContainer));
+export default HomeContainer;

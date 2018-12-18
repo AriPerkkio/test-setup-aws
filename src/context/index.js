@@ -1,1 +1,1 @@
-export { ContextProvider, withContext } from './context';
+export { AuthContext, AuthContextProvider } from './context';

@@ -5,11 +5,11 @@ import NavigationHeader from './components/NavigationHeader';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Home from './components/Home';
-import { ContextProvider } from './context';
+import { AuthContextProvider } from './context';
 
 const App = () => {
     return (
-        <ContextProvider>
+        <AuthContextProvider>
             <HashRouter>
                 <Fragment>
                     <NavigationHeader />
@@ -18,7 +18,7 @@ const App = () => {
                     <Route path="(/home|/)" component={Home} />
                 </Fragment>
             </HashRouter>
-        </ContextProvider>
+        </AuthContextProvider>
     );
 };
 

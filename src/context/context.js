@@ -1,35 +1,25 @@
-import React, { Component, createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
-const { Provider, Consumer } = createContext();
+const AuthContext = createContext();
 
-class ContextProvider extends Component {
-    state = {
-        authToken: null,
-        ...this.props
-    }
+const AuthContextProvider = ({
+    children
+}) => {
+    const [authToken, setAuthToken] = useState(null);
 
-    setAuthToken = authToken => this.setState({ authToken })
+    const context = {
+        setAuthToken,
+        authToken
+    };
 
-    render() {
-        const context = {
-            ...this.state,
-            setAuthToken: this.setAuthToken
-        };
-
-        return (
-            <Provider value={context}>
-                {this.props.children}
-            </Provider>
-        );
-    }
-}
-
-const withContext = Component => props =>
-    <Consumer>
-        {ctx => <Component {...ctx} {...props} />}
-    </Consumer>;
+    return (
+        <AuthContext.Provider value={context}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
 
 export {
-    ContextProvider,
-    withContext
+    AuthContext,
+    AuthContextProvider
 };
