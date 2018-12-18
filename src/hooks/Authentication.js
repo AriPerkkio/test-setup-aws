@@ -30,7 +30,7 @@ const useAuthentication = (history) => {
         }
     };
 
-    useEffect(checkAuthentication);
+    useEffect(checkAuthentication, [isAuthenticated]);
 
     return isAuthenticated;
 };
