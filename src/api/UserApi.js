@@ -52,10 +52,28 @@ const logout = () => userPool.getCurrentUser().signOut();
 
 const isLoggedIn = () => userPool.getCurrentUser() != null;
 
+const getAuthToken = () =>
+    new Promise((resolve, reject) => {
+        const user = userPool.getCurrentUser();
+
+        if (user != null) {
+            user.getSession((err, session) => {
+                if (err || !session || !session.isValid()) {
+                    reject();
+                } else {
+                    resolve(session.getIdToken().jwtToken);
+                }
+            });
+        } else {
+            reject();
+        }
+    });
+
 export {
     signup,
     verify,
     login,
     logout,
-    isLoggedIn
+    isLoggedIn,
+    getAuthToken
 };
