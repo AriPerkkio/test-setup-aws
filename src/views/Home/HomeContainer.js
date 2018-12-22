@@ -3,7 +3,6 @@ import React, { useState, useContext } from 'react';
 import Home from './Home';
 import TestApi from '../../api/TestApi';
 import { AuthContext } from '../../context';
-import { useAuthentication } from '../../hooks';
 
 const HomeContainer = () => {
     const [response, setResponse] = useState(null);
@@ -12,9 +11,7 @@ const HomeContainer = () => {
     const [queryError, setQueryError] = useState(null);
     const [postError, setPostError] = useState(null);
 
-    const isAuthenticated = useAuthentication();
     const { authToken } = useContext(AuthContext);
-
     const api = TestApi({ authToken });
 
     const getData = () => {
@@ -33,10 +30,6 @@ const HomeContainer = () => {
             .then(() => setSending(false))
             .catch(setPostError);
     };
-
-    if (!isAuthenticated) {
-        return null;
-    }
 
     return (
         <Home {...{

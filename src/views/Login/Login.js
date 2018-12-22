@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UserForm, { UserFormInput, UserFormSubmit } from '../common/UserForm';
+import UserForm, { UserFormInput, UserFormSubmit } from '../../components/UserForm';
 
 const Login = ({
     onSubmit,

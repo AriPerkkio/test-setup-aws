@@ -10,8 +10,8 @@ module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
 
     const plugins = isProduction ?
-        [ new MiniCssExtractPlugin() ] :
-        [ new HtmlWebPackPlugin({ templateContent: '<div id="app-root"></div>'}) ];
+        [new MiniCssExtractPlugin()] :
+        [new HtmlWebPackPlugin({ templateContent: '<div id="app-root"></div>' })];
 
     return {
         entry: getPath('src/index.js'),
@@ -46,6 +46,7 @@ module.exports = (env, argv) => {
             port: 3000,
             overlay: true,
             contentBase: './public',
+            disableHostCheck: true,
             proxy: {
                 '/api': {
                     target: `http://${cf.CloudFrontDomainName}`,
