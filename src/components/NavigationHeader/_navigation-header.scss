@@ -1,19 +1,35 @@
 .navigation-header {
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
-    grid-column-gap: 2rem;
-    justify-content: end;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     margin-bottom: 2rem;
 
+    > * {
+        margin: 0 1rem;
+    }
+
+    &--btn-theme,
     &--link {
         font-size: 2rem;
         font-weight: 600;
-        color: $color-yellow;
+        color: var(--color-primary);
         text-decoration: none;
+        cursor: pointer;
 
-        background-color: $color-pink;
+        background-color: var(--color-secondary);
         padding: .5rem 1rem;
+        border: 0;
+        outline: 0;
         border-radius: 45%;
-        box-shadow: 0 .5rem 3rem rgba($color-pink, .7);
+        box-shadow: 0 .5rem 3rem rgba(var(--color-secondary), .7);
+    }
+
+    &--btn-theme {
+        font-size: 1.3rem;
+        margin-right: auto;
+        width: 5.5rem;
+        border-radius: 35%;
+        line-height: 1.1;
+        transform: rotate(-20deg);
     }
 }

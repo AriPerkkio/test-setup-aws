@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import NavigationHeader from './components/NavigationHeader';
@@ -6,12 +6,12 @@ import Signup from './views/Signup';
 import Login from './views/Login';
 import Home from './views/Home';
 import Dashboard from './views/Dashboard';
-import { AuthContextProvider } from './context';
+import { AuthContextProvider, ThemeContextProvider } from './context';
 
 const App = () => {
     return (
         <HashRouter>
-            <Fragment>
+            <ThemeContextProvider>
                 <NavigationHeader />
                 <Switch>
                     <Route exact path="/signup" component={Signup} />
@@ -28,7 +28,7 @@ const App = () => {
 
                     <Redirect to={'/login'} />
                 </Switch>
-            </Fragment>
+            </ThemeContextProvider>
         </HashRouter>
     );
 };

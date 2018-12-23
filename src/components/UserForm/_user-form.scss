@@ -1,17 +1,17 @@
 $base-font-size: 2rem;
-$loading-color: rgba($color-yellow, .7);
+$loading-color: rgba(var(--color-primary), .7);
 
 .user-form {
     font-family: $font-primary;
     font-size: $base-font-size;
-    color: $color-red;
+    color: var(--color-tertiary);
 
     padding: 3rem;
     margin: 0 5rem;
     border-radius: 3rem;
     border: 0;
-    background-color: $color-pink;
-    box-shadow: 0 1rem 5rem rgba($color-pink, .9);
+    background-color: var(--color-secondary);
+    box-shadow: 0 1rem 5rem rgba(var(--color-secondary), .9);
 
     display: grid;
     grid-template-columns: [start] 1fr [center] min-content [end];
@@ -34,12 +34,11 @@ $loading-color: rgba($color-yellow, .7);
 
         font-size: $base-font-size * 1.5;
         color: currentColor;
-        background-color: $color-yellow;
-        transition: all .2s;
+        background-color: var(--color-primary);
 
         border: 0;
         border-radius: 20%;
-        box-shadow: 0 .5rem 4rem rgba($color-yellow, .5);
+        box-shadow: 0 .5rem 4rem rgba(var(--color-primary), .5);
         padding: .2rem 1.5rem;
 
         &::after { opacity: 0; }
@@ -54,7 +53,7 @@ $loading-color: rgba($color-yellow, .7);
                 height: $base-font-size / 1.2;
                 opacity: 1;
 
-                border: .2rem solid $color-red;
+                border: .2rem solid var(--color-tertiary);
                 border-radius: 50%;
                 border-left-color: transparent;
                 border-bottom-color: transparent;
@@ -67,9 +66,10 @@ $loading-color: rgba($color-yellow, .7);
         grid-column: start / end;
         border: 0;
         border-radius: 1rem;
+        outline: 0;
         padding: .5rem 0 .5rem 1rem;
-        background-color: $color-yellow;
-        box-shadow: 0 .1rem 2rem rgba($color-yellow, .5);
+        background-color: var(--color-primary);
+        box-shadow: 0 .1rem 2rem rgba(var(--color-primary), .5);
 
         &,
         &::placeholder {
@@ -85,7 +85,6 @@ $loading-color: rgba($color-yellow, .7);
             visibility: visible;
             margin-top: 0;
             margin-bottom: 0;
-            transition: all .2s;
             color: $color-white;
         }
 

@@ -1,1 +1,2 @@
-export { AuthContext, AuthContextProvider } from './context';
+export { AuthContext, AuthContextProvider } from './AuthContext';
+export { ThemeContext, ThemeContextProvider } from './ThemeContext';

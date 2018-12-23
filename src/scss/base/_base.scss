@@ -7,18 +7,39 @@
     font-family: inherit;
 }
 
+#app-container {
+    * {
+        transition: all .5s;
+    }
+
+    &.theme-1 {
+        --color-primary: #{$color-yellow};
+        --color-secondary: #{$color-pink};
+        --color-tertiary: #{$color-red};
+    }
+
+    &.theme-2 {
+        --color-primary: #{$color-green-light};
+        --color-secondary: #{$color-green-dark};
+        --color-tertiary: #{$color-white};
+    }
+}
+
 html {
     font-size: 62.5%;
     font-family: $font-primary;
 }
 
-body {
+#app-container {
+    height: 100%;
+    width: 100%;
+
     box-sizing: border-box;
-    background-color: $color-yellow;
+    background-color: var(--color-primary);
     padding: 3rem;
 }
 
 ::selection {
-    color: $color-yellow;
+    color: var(--color-primary);
     background-color: $color-black;
 }
