@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import Home from './Home';
 import TestApi from '../../api/TestApi';
 import { AuthContext } from '../../context';
+import { useFadeIn } from '../../hooks';
 
 const HomeContainer = () => {
     const [response, setResponse] = useState(null);
@@ -11,6 +12,7 @@ const HomeContainer = () => {
     const [queryError, setQueryError] = useState(null);
     const [postError, setPostError] = useState(null);
 
+    const className = useFadeIn();
     const { authToken } = useContext(AuthContext);
     const api = TestApi({ authToken });
 
@@ -33,6 +35,7 @@ const HomeContainer = () => {
 
     return (
         <Home {...{
+            className,
             getData,
             postData,
             response,

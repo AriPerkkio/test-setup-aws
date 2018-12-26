@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 
 import Signup from './Signup';
 import { verify, signup } from '../../api/UserApi';
+import { useFadeIn } from '../../hooks';
 
 const SignupContainer = ({ history }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isVerifying, setIsVerifying] = useState(false);
+    const className = useFadeIn();
 
     const onSignupSuccess = () => {
         setLoading(false);
@@ -43,6 +45,7 @@ const SignupContainer = ({ history }) => {
 
     return (
         <Signup {...{
+            className,
             onSignup,
             onVerify,
             loading,

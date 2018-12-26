@@ -9,7 +9,7 @@
 
 #app-container {
     * {
-        transition: all .5s;
+        transition: all .5s, opacity .5s ease-in;
     }
 
     &.theme-1 {

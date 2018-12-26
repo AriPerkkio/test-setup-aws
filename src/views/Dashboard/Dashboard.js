@@ -1,10 +1,16 @@
 import React from 'react';
 
+import { concatClasses } from '../../utils';
+
 const BASE_CLASS = 'dashboard';
 
-const DashBoard = () => {
+const DashBoard = ({
+    className
+}) => {
+    const classNames = concatClasses(BASE_CLASS, className);
+
     return (
-        <div className={BASE_CLASS}>
+        <div className={classNames}>
             Dashboard
         </div>
     );

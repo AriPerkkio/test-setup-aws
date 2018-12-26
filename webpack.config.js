@@ -47,6 +47,8 @@ module.exports = (env, argv) => {
             overlay: true,
             contentBase: './public',
             disableHostCheck: true,
+            noInfo: true,
+            clientLogLevel: 'error',
             proxy: {
                 '/api': {
                     target: `http://${cf.CloudFrontDomainName}`,

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { concatClasses } from '../../utils';
+
 const BASE_CLASS = 'user-form-submit';
 
 const SubmitButton = ({
@@ -8,11 +10,11 @@ const SubmitButton = ({
     text,
     ...props
 }) => {
-    const classNames = [
+    const classNames = concatClasses(
         BASE_CLASS,
-        loading ? `${BASE_CLASS}--loading` : '',
-        className,
-    ].join(' ').trim();
+        loading && `${BASE_CLASS}--loading`,
+        className
+    );
 
     return (
         <button

@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 const THEME_1 = 'theme-1';
 const THEME_2 = 'theme-2';
 
-const switchTheme = theme =>
+const toggleTheme = theme =>
     theme === THEME_1 ? THEME_2 : THEME_1;
 
 const ThemeContextProvider = ({
@@ -16,7 +16,7 @@ const ThemeContextProvider = ({
     const context = {
         theme,
         setTheme,
-        switchTheme: () => setTheme(switchTheme(theme))
+        switchTheme: () => setTheme(toggleTheme(theme))
     };
 
     return (

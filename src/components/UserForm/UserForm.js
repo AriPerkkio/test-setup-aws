@@ -1,5 +1,7 @@
 import React, { Children, cloneElement } from 'react';
 
+import { concatClasses } from '../../utils';
+
 const BASE_CLASS = 'user-form';
 
 const UserForm = ({
@@ -10,11 +12,10 @@ const UserForm = ({
     children,
     ...props
 }) => {
-    const classNames = [
+    const classNames = concatClasses(
         BASE_CLASS,
-        className ? className : '',
-        loading ? `${BASE_CLASS}--loading` : ''
-    ].join(' ').trim();
+        className,
+        loading && `${BASE_CLASS}--loading`);
 
     return (
         <form {...props}

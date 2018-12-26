@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 
 import Login from './Login';
 import { login } from '../../api/UserApi';
+import { useFadeIn } from '../../hooks';
 
 const LoginContainer = ({ history }) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const className = useFadeIn();
 
     const onSuccess = () => {
         setLoading(false);
@@ -28,6 +30,7 @@ const LoginContainer = ({ history }) => {
 
     return (
         <Login {...{
+            className,
             onSubmit,
             loading,
             error
