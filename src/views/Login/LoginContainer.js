@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Login from './Login';
-import { login } from '../../api/UserApi';
+import { login, isLoggedIn } from '../../api/UserApi';
 import { useFadeIn } from '../../hooks';
 
 const LoginContainer = ({ history }) => {
@@ -9,10 +9,16 @@ const LoginContainer = ({ history }) => {
     const [loading, setLoading] = useState(false);
     const className = useFadeIn();
 
+    useEffect(() => {
+        if (isLoggedIn()) {
+            history.push('/auth');
+        }
+    }, []);
+
     const onSuccess = () => {
         setLoading(false);
         setError(null);
-        history.push('/auth/home');
+        history.push('/auth');
     };
 
     const onError = e => {
