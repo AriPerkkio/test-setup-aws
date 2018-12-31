@@ -12,6 +12,5 @@ const concatClasses = (...classNames) => classNames
     .map(resolveClassInput)
     .join(' ').trim();
 
-export {
-    concatClasses
-};
+export { concatClasses };
+export { default as Authenticator } from './Authenticator';

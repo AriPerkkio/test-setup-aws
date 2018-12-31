@@ -1,22 +1,22 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 
 import { getAuthToken } from '../api/UserApi';
 import { AuthContext } from '../context';
 
-const useAuthentication = () => {
-    const [isAuthenticated, setAuthenticated] = useState(false);
-    const { setAuthToken } = useContext(AuthContext);
+const redirectToLogin = () => { window.location.href = '#/login'; };
 
-    const onAuthFailure = () => { window.location.href = '#/login'; };
-    const onAuthSuccess = authToken => {
-        setAuthToken(authToken);
-        setAuthenticated(true);
-    };
+/**
+ * On component mount, check if user is authenticated. Set token into context
+ * and return authentication status (same as in context, one source).
+ * If user is not authenticated redirect to login page.
+ */
+const useAuthentication = () => {
+    const { isAuthenticated, setAuthToken } = useContext(AuthContext);
 
     useEffect(() => {
         getAuthToken()
-            .then(onAuthSuccess)
-            .catch(onAuthFailure);
+            .then(setAuthToken)
+            .catch(redirectToLogin);
     }, []);
 
     return isAuthenticated;

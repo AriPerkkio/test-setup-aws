@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ThemeContext } from '../../context';
-import { logout, isLoggedIn } from '../../api/UserApi';
+import { ThemeContext, AuthContext } from '../../context';
+import { logout } from '../../api/UserApi';
 
 const BASE_CLASS = 'navigation-header';
 
@@ -14,15 +14,20 @@ const loggedOutUserNavs = [
 const loggedInUserNavs = [
     { to: '/auth/home', name: 'Home' },
     { to: '/auth/dashboard', name: 'Dashboard' },
-    { to: '/login', name: 'Logout', onClick: logout }
 ];
 
 const NavigationHeader = () => {
-    const navs = isLoggedIn() ?
-        loggedInUserNavs :
-        loggedOutUserNavs;
-
+    const { isAuthenticated, setAuthToken } = useContext(AuthContext);
     const { switchTheme } = useContext(ThemeContext);
+
+    const onLogOut = () => {
+        logout();
+        setAuthToken(null);
+    };
+
+    const navs = isAuthenticated ?
+        loggedInUserNavs.concat({ to: '/login', name: 'Logout', onClick: onLogOut }) :
+        loggedOutUserNavs;
 
     return (
         <nav className={BASE_CLASS}>
@@ -32,8 +37,8 @@ const NavigationHeader = () => {
                 Switch theme
             </button>
 
-            {navs.map(({ name, ...props }, key) =>
-                <NavLink {...{ ...props, key }}
+            {navs.map(({ name, ...props }) =>
+                <NavLink {...{ ...props, key: name }}
                     className={`${BASE_CLASS}--link`}>
                     {name}
                 </NavLink>

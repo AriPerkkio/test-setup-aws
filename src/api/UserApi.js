@@ -50,8 +50,6 @@ const login = (email, password) =>
 
 const logout = () => userPool.getCurrentUser().signOut();
 
-const isLoggedIn = () => userPool.getCurrentUser() != null;
-
 const getAuthToken = () =>
     new Promise((resolve, reject) => {
         const user = userPool.getCurrentUser();
@@ -74,6 +72,5 @@ export {
     verify,
     login,
     logout,
-    isLoggedIn,
     getAuthToken
 };

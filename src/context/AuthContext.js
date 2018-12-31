@@ -1,6 +1,4 @@
-import React, { createContext, useState, createElement } from 'react';
-
-import { useAuthentication } from '../hooks';
+import React, { createContext, useState } from 'react';
 
 const AuthContext = createContext();
 
@@ -11,23 +9,15 @@ const AuthContextProvider = ({
 
     const context = {
         setAuthToken,
-        authToken
+        authToken,
+        isAuthenticated: authToken != null
     };
 
     return (
         <AuthContext.Provider value={context}>
-            {React.Children.map(children, child =>
-                createElement(AuthChildren, { children: child }))}
+            {children}
         </AuthContext.Provider>
     );
-};
-
-const AuthChildren = ({ children }) => {
-    const isAuthenticated = useAuthentication();
-
-    if (!isAuthenticated) return null;
-
-    return children;
 };
 
 export {

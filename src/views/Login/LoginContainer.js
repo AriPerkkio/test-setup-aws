@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 import Login from './Login';
-import { login, isLoggedIn } from '../../api/UserApi';
-import { useFadeIn } from '../../hooks';
+import { login } from '../../api/UserApi';
+import { useFadeIn, useAuthentication } from '../../hooks';
 
 const LoginContainer = ({ history }) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const className = useFadeIn();
+    const isAuthenticated = useAuthentication();
 
     useEffect(() => {
-        if (isLoggedIn()) {
+        if (isAuthenticated) {
             history.push('/auth');
         }
     }, []);
