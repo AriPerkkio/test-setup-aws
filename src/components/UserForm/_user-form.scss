@@ -14,7 +14,7 @@ $loading-color: rgba(var(--color-primary), .7);
     box-shadow: 0 1rem 5rem rgba(var(--color-secondary), .9);
 
     display: grid;
-    grid-template-columns: [start] 1fr [center] min-content [end];
+    grid-template-columns: [start] 1fr [center] max-content [end];
     grid-column-gap: 1rem;
 
     &--loading {

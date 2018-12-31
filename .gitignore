@@ -1,5 +1,6 @@
 node_modules
-public/main.*
+public/*.js
+public/*.css
 package-lock.json
 .serverless
 .vscode

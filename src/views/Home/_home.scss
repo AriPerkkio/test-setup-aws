@@ -2,4 +2,19 @@
     font-size: 3rem;
     color: var(--color-tertiary);
     padding: 3rem;
+
+    &--form {
+        align-items: baseline;
+        max-width: 40rem;
+    }
+
+    &--input {
+        grid-column: start / center;
+    }
+
+    &--submit {
+        font-size: 2rem;
+        border-radius: 5px;
+        grid-row: 1/2;
+    }
 }

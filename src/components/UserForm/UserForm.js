@@ -1,4 +1,4 @@
-import React, { Children, cloneElement } from 'react';
+import React, { Children, cloneElement, forwardRef } from 'react';
 
 import { concatClasses } from '../../utils';
 
@@ -10,6 +10,7 @@ const UserForm = ({
     className,
     loading,
     children,
+    fwdRef,
     ...props
 }) => {
     const classNames = concatClasses(
@@ -20,7 +21,8 @@ const UserForm = ({
     return (
         <form {...props}
             onSubmit={preventEventSubmit(onSubmit)}
-            className={classNames}>
+            className={classNames}
+            ref={fwdRef}>
 
             {Children.map(children, child =>
                 cloneElement(child, { loading }))}
@@ -58,4 +60,4 @@ const toLowerCamelCase = name => {
     return first + rest;
 };
 
-export default UserForm;
+export default forwardRef((props, ref) => <UserForm {...props} fwdRef={ref} />);

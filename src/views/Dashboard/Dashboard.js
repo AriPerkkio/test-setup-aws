@@ -5,7 +5,10 @@ import { concatClasses } from '../../utils';
 const BASE_CLASS = 'dashboard';
 
 const DashBoard = ({
-    className
+    className,
+    data,
+    loading,
+    error
 }) => {
     const classNames = concatClasses(BASE_CLASS, className);
 
