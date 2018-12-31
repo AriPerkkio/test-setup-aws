@@ -5,15 +5,21 @@ module.exports.postData = async event =>
         .then(onSuccess)
         .catch(onFailure);
 
-const parseRequest = event => ({
-    userId: event.requestContext.authorizer.claims.sub,
-    value: JSON.parse(event.body).value
-});
+const parseRequest = event => {
+    const body = JSON.parse(event.body);
+    const { value, unit } = body || {};
+
+    return {
+        userId: event.requestContext.authorizer.claims.sub,
+        value,
+        unit
+    };
+};
 
 const addData = event => new Promise((resolve, reject) => {
     try {
-        const { userId, value } = parseRequest(event);
-        const item = generateItem(userId, value);
+        const { userId, value, unit } = parseRequest(event);
+        const item = generateItem(userId, value, unit);
 
         db.putItem(item, (err, result) =>
             err ? reject(err) : resolve(result));
@@ -22,11 +28,12 @@ const addData = event => new Promise((resolve, reject) => {
     }
 });
 
-const generateItem = (userId, value) => ({
+const generateItem = (userId, value, unit) => ({
     ...getTable(),
     Item: {
         userId: { S: userId },
         value: { S: value },
+        unit: { S: unit },
         key: { S: new Date().getTime().toString() }
     }
 });

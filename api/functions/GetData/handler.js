@@ -10,9 +10,10 @@ const parseRequest = event => ({
     userId: event.requestContext.authorizer.claims.sub,
 });
 
-const parseQueryResult = ({ Items }) => Items.map(({ key, value }) => ({
+const parseQueryResult = ({ Items }) => Items.map(({ key, value, unit }) => ({
     key: key.S,
-    value: value.S
+    value: value.S,
+    unit: unit.S
 }));
 
 const getData = event => new Promise((resolve, reject) => {
