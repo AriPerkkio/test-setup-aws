@@ -2,7 +2,8 @@ import React, { lazy, Suspense } from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import NavigationHeader from './components/NavigationHeader';
-import { AuthContextProvider, ThemeContextProvider } from './context';
+import { AuthContextProvider, ThemeContextProvider, DataContextProvider } from './context';
+import { reducer, initialState } from './reducers';
 import { Authenticator } from './utils';
 
 const Signup = lazy(() => import(/* webpackChunkName: "signup" */ './views/Signup'));
@@ -24,11 +25,13 @@ const App = () => {
                             {/* Routes requiring authentication */}
                             <Route path='/auth' render={({ match: { path: auth } }) =>
                                 <Authenticator>
-                                    <Switch>
-                                        <Route exact path={`${auth}(/home|/)`} component={Home} />
-                                        <Route exact path={`${auth}/dashboard`} component={Dashboard} />
-                                        <Redirect to={`${auth}/`} />
-                                    </Switch>
+                                    <DataContextProvider {...{ reducer, initialState }}>
+                                        <Switch>
+                                            <Route exact path={`${auth}(/home|/)`} component={Home} />
+                                            <Route exact path={`${auth}/dashboard`} component={Dashboard} />
+                                            <Redirect to={`${auth}/`} />
+                                        </Switch>
+                                    </DataContextProvider>
                                 </Authenticator>} />
 
                             <Redirect to={'/login'} />

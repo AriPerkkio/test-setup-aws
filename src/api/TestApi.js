@@ -2,9 +2,7 @@ const generateRequest = config =>
     fetch('/api/generic-data', config)
         .then(resp => resp.json());
 
-const TestApi = ({
-    authToken
-}) => {
+const TestApi = authToken => {
     const config = body => ({
         headers: {
             'X-Authorization': authToken,
@@ -14,6 +12,7 @@ const TestApi = ({
         method: body ? 'POST' : 'GET',
         body: body ? JSON.stringify(body) : undefined
     });
+
 
     return {
         get: () => generateRequest(config()),

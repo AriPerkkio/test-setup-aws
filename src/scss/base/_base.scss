@@ -32,9 +32,8 @@ html {
 
 #app-container {
     height: 100%;
-    width: 100%;
-
     box-sizing: border-box;
+    overflow: scroll;
     background-color: var(--color-primary);
     padding: 3rem;
 }

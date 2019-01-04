@@ -6,16 +6,23 @@ const BASE_CLASS = 'dashboard';
 
 const DashBoard = ({
     className,
+    dispatch,
+    state,
     data,
     loading,
     error
 }) => {
     const classNames = concatClasses(BASE_CLASS, className);
 
+
     return (
         <div className={classNames}>
             Dashboard
-        </div>
+
+            <pre>
+                {JSON.stringify(state, null, 4)}
+            </pre>
+        </div >
     );
 };
 

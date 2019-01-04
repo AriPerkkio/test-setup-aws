@@ -14,7 +14,7 @@ const LoginContainer = ({ history }) => {
         if (isAuthenticated) {
             history.push('/auth');
         }
-    }, []);
+    }, [isAuthenticated]);
 
     const onSuccess = () => {
         setLoading(false);
