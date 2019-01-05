@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Dashboard from './Dashboard';
-import { useFadeIn, useData } from '../../hooks';
+import { useFadeIn, useDataAccess } from '../../hooks';
 
 const DashBoardContainer = () => {
     const className = useFadeIn();
-    const state = useData();
+    const { state, getData } = useDataAccess();
+
+    useEffect(getData, []);
 
     return (
         <Dashboard {...{

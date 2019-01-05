@@ -9,4 +9,4 @@ export {
     postDataFailure,
 } from './actions';
 
-export { getDataDispatcher } from './dispatchers';
+export { getDataDispatcher, postDataDispatcher } from './dispatchers';

@@ -22,6 +22,4 @@ const useAuthentication = () => {
     return isAuthenticated;
 };
 
-export {
-    useAuthentication
-};
+export default useAuthentication;

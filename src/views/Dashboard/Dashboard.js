@@ -6,11 +6,7 @@ const BASE_CLASS = 'dashboard';
 
 const DashBoard = ({
     className,
-    dispatch,
     state,
-    data,
-    loading,
-    error
 }) => {
     const classNames = concatClasses(BASE_CLASS, className);
 

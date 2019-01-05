@@ -7,19 +7,19 @@ const BASE_CLASS = 'home';
 
 const Home = ({
     className,
-    postData,
-    sending,
-    error,
+    onSubmit,
     formRef,
+    state,
 }) => {
     const classNames = concatClasses(BASE_CLASS, className);
+    const { sending, error } = state;
 
     return (
         <div className={classNames}>
             Home
 
             <UserForm
-                onSubmit={postData}
+                onSubmit={onSubmit}
                 loading={sending}
                 error={error}
                 className={`${BASE_CLASS}--form`}

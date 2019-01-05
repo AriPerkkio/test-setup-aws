@@ -12,6 +12,4 @@ const useFadeIn = () => {
     return className;
 };
 
-export {
-    useFadeIn
-};
+export default useFadeIn;
