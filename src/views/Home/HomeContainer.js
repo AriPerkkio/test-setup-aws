@@ -7,6 +7,7 @@ const HomeContainer = () => {
     const formRef = useRef();
     const className = useFadeIn();
     const { state, postData } = useDataAccess();
+    const { sending, error } = state;
 
     const onSubmit = data =>
         postData(data)
@@ -16,7 +17,8 @@ const HomeContainer = () => {
         <Home {...{
             className,
             formRef,
-            state,
+            sending,
+            error,
             onSubmit,
         }} />
     );

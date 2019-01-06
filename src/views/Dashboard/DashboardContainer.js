@@ -7,7 +7,7 @@ const DashBoardContainer = () => {
     const className = useFadeIn();
     const { state, getData } = useDataAccess();
 
-    useEffect(getData, []);
+    useEffect(() => { getData(); }, []);
 
     return (
         <Dashboard {...{

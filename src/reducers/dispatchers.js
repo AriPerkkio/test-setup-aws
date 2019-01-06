@@ -11,7 +11,7 @@ import {
 export const getDataDispatcher = (dispatch, authToken) => () => {
     dispatch(fetchDataStart);
 
-    TestApi(authToken)
+    return TestApi(authToken)
         .get()
         .then(payload => dispatch(fetchDataSuccess(payload)))
         .catch(error => dispatch(fetchDataFailure(error)));
@@ -20,7 +20,7 @@ export const getDataDispatcher = (dispatch, authToken) => () => {
 export const postDataDispatcher = (dispatch, authToken) => body => {
     dispatch(postDataStart);
 
-    TestApi(authToken)
+    return TestApi(authToken)
         .post(body)
         .then(payload => dispatch(postDataSuccess(payload)))
         .catch(error => dispatch(postDataFailure(error)));

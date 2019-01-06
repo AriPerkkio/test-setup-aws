@@ -9,10 +9,10 @@ const Home = ({
     className,
     onSubmit,
     formRef,
-    state,
+    sending,
+    error,
 }) => {
     const classNames = concatClasses(BASE_CLASS, className);
-    const { sending, error } = state;
 
     return (
         <div className={classNames}>

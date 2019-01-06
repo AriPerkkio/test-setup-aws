@@ -52,7 +52,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 sending: false,
-                data: state.data.concat(data),
+                data: [].concat(state.data, data),
             };
 
         case POST_DATA_FAILURE:
