@@ -7,15 +7,20 @@ import { DataContext, AuthContext } from '../context';
  * Provides simple way to access data store and methods for updating it.
  * Hides implementation of useReducer and useContext
  */
-const useDataAccess = () => {
+const useDataAccess = (
+    mapPropsToState = state => state
+) => {
     const { authToken } = useContext(AuthContext);
     const { state, dispatch } = useContext(DataContext);
 
     const getData = useMemo(() => getDataDispatcher(dispatch, authToken), [dispatch, authToken]);
     const postData = useMemo(() => postDataDispatcher(dispatch, authToken), [dispatch, authToken]);
 
+    const mappedState = mapPropsToState(state);
+    // TODO shallowCompare with useMemo. HOC with shouldComponentUpdate not wanted
+
     return {
-        state,
+        state: mappedState,
         getData,
         postData,
     };
