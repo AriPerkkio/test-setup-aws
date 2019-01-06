@@ -12,9 +12,9 @@ const config = ({ body, authToken }) => ({
     body: body ? JSON.stringify(body) : undefined
 });
 
-const TestApi = authToken => ({
+const DataApi = authToken => ({
     get: () => generateRequest(config({ authToken })),
     post: body => generateRequest(config({ body, authToken }))
 });
 
-export default TestApi;
+export default DataApi;

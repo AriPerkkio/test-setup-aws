@@ -1,4 +1,4 @@
-import TestApi from '../api/TestApi';
+import DataApi from '../api/DataApi';
 import {
     fetchDataStart,
     fetchDataSuccess,
@@ -11,7 +11,7 @@ import {
 export const getDataDispatcher = (dispatch, authToken) => () => {
     dispatch(fetchDataStart);
 
-    return TestApi(authToken)
+    return DataApi(authToken)
         .get()
         .then(payload => dispatch(fetchDataSuccess(payload)))
         .catch(error => dispatch(fetchDataFailure(error)));
@@ -20,7 +20,7 @@ export const getDataDispatcher = (dispatch, authToken) => () => {
 export const postDataDispatcher = (dispatch, authToken) => body => {
     dispatch(postDataStart);
 
-    return TestApi(authToken)
+    return DataApi(authToken)
         .post(body)
         .then(payload => dispatch(postDataSuccess(payload)))
         .catch(error => dispatch(postDataFailure(error)));

@@ -13,7 +13,7 @@ const SubmitButton = ({
     const classNames = concatClasses(
         BASE_CLASS,
         loading && `${BASE_CLASS}--loading`,
-        className
+        className,
     );
 
     return (

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { concatClasses } from '../../utils';
+
 const BASE_CLASS = 'user-form-input';
 const TYPES = ['email', 'password'];
 
@@ -12,11 +14,11 @@ const UserFormInput = ({
     const id = name.replace(' ', '-').toLowerCase();
     const type = TYPES.includes(id) ? id : 'text';
 
-    const classNames = [
+    const classNames = concatClasses(
         BASE_CLASS,
-        className ? className : '',
-        loading ? `${BASE_CLASS}--loading` : ''
-    ].join(' ').trim();
+        className,
+        loading && `${BASE_CLASS}--loading`,
+    );
 
     return (
         <>

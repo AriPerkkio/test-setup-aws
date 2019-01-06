@@ -16,7 +16,8 @@ const UserForm = ({
     const classNames = concatClasses(
         BASE_CLASS,
         className,
-        loading && `${BASE_CLASS}--loading`);
+        loading && `${BASE_CLASS}--loading`,
+    );
 
     return (
         <form {...props}
