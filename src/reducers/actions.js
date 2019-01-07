@@ -17,7 +17,7 @@ export const fetchDataSuccess = payload => ({
 
 export const fetchDataFailure = error => ({
     type: FETCH_DATA_FAILURE,
-    error
+    payload: { error }
 });
 
 export const postDataStart = () => ({
@@ -31,5 +31,5 @@ export const postDataSuccess = payload => ({
 
 export const postDataFailure = error => ({
     type: POST_DATA_FAILURE,
-    error
+    payload: { error }
 });

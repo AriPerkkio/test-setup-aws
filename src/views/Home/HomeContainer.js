@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 
 import Home from './Home';
 import { useFadeIn, useDataAccess } from '../../hooks';
@@ -14,9 +14,11 @@ const HomeContainer = () => {
     const { state, postData } = useDataAccess(mapPropsToState);
     const { sending, error } = state;
 
-    const onSubmit = data =>
+    const onSubmit = useCallback(data =>
         postData(data)
-            .then(() => formRef.current.reset());
+            .then(() => formRef.current.reset()),
+        [formRef, postData]
+    );
 
     return (
         <Home {...{

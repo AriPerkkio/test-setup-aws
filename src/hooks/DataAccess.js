@@ -17,7 +17,8 @@ const useDataAccess = (
     const postData = useMemo(() => postDataDispatcher(dispatch, authToken), [dispatch, authToken]);
 
     const mappedState = mapPropsToState(state);
-    // TODO shallowCompare with useMemo. HOC with shouldComponentUpdate not wanted
+
+    setDispatchDebugging(dispatch);
 
     return {
         state: mappedState,
@@ -25,5 +26,8 @@ const useDataAccess = (
         postData,
     };
 };
+
+// For debugging + performance optimization
+const setDispatchDebugging = dispatch => { window.__DISPATCH__ = dispatch; };
 
 export default useDataAccess;

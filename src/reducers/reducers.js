@@ -59,7 +59,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 sending: false,
-                error: null,
+                error,
             };
 
         default:

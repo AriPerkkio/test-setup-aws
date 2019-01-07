@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import UserForm, { UserFormInput, UserFormSubmit } from '../../components/UserForm';
 import { concatClasses } from '../../utils';
 
 const BASE_CLASS = 'home';
 
-const Home = ({
+const Home = memo(({
     className,
     onSubmit,
     formRef,
@@ -40,6 +40,6 @@ const Home = ({
             </UserForm>
         </div>
     );
-};
+});
 
 export default Home;

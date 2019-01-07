@@ -9,7 +9,7 @@ import {
 } from './actions';
 
 export const getDataDispatcher = (dispatch, authToken) => () => {
-    dispatch(fetchDataStart);
+    dispatch(fetchDataStart());
 
     return DataApi(authToken)
         .get()
@@ -18,7 +18,7 @@ export const getDataDispatcher = (dispatch, authToken) => () => {
 };
 
 export const postDataDispatcher = (dispatch, authToken) => body => {
-    dispatch(postDataStart);
+    dispatch(postDataStart());
 
     return DataApi(authToken)
         .post(body)

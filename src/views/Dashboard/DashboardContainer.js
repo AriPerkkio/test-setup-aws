@@ -12,12 +12,15 @@ const mapPropsToState = state => ({
 const DashBoardContainer = () => {
     const className = useFadeIn();
     const { state, getData } = useDataAccess(mapPropsToState);
+    const { data, loading, error } = state;
 
     useEffect(() => { getData(); }, []);
 
     return (
         <Dashboard {...{
-            state,
+            data,
+            loading,
+            error,
             className,
         }} />
     );
