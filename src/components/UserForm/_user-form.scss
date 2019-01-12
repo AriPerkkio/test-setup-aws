@@ -1,17 +1,15 @@
 $base-font-size: 2rem;
-$loading-color: rgba(var(--color-primary), .7);
 
 .user-form {
     font-family: $font-primary;
     font-size: $base-font-size;
-    color: var(--color-tertiary);
+    color: var(--color-typo);
 
     padding: 3rem;
-    margin: 0 5rem;
     border-radius: 3rem;
     border: 0;
     background-color: var(--color-secondary);
-    box-shadow: 0 1rem 5rem rgba(var(--color-secondary), .9);
+    box-shadow: 0 .5rem 1.5rem var(--color-secondary);
 
     display: grid;
     grid-template-columns: [start] 1fr [center] max-content [end];
@@ -24,7 +22,7 @@ $loading-color: rgba(var(--color-primary), .7);
     &--errors {
         font-size: $base-font-size * 2;
         font-weight: 100;
-        color: $color-white;
+        color: var(--color-error);
     }
 
     &-submit {
@@ -38,13 +36,13 @@ $loading-color: rgba(var(--color-primary), .7);
 
         border: 0;
         border-radius: 20%;
-        box-shadow: 0 .5rem 4rem rgba(var(--color-primary), .5);
+        box-shadow: 0 .1rem 1rem var(--color-primary);
         padding: .2rem 1.5rem;
 
         &::after { opacity: 0; }
 
         &--loading {
-            background-color: $loading-color;
+            opacity: .5;
 
             &::after {
                 content: '';
@@ -53,7 +51,7 @@ $loading-color: rgba(var(--color-primary), .7);
                 height: $base-font-size / 1.2;
                 opacity: 1;
 
-                border: .2rem solid var(--color-tertiary);
+                border: .2rem dotted var(--color-typo);
                 border-radius: 50%;
                 border-left-color: transparent;
                 border-bottom-color: transparent;
@@ -69,7 +67,7 @@ $loading-color: rgba(var(--color-primary), .7);
         outline: 0;
         padding: .5rem 0 .5rem 1rem;
         background-color: var(--color-primary);
-        box-shadow: 0 .1rem 2rem rgba(var(--color-primary), .5);
+        box-shadow: 0 .1rem 1rem var(--color-primary);
 
         &,
         &::placeholder {
@@ -85,7 +83,7 @@ $loading-color: rgba(var(--color-primary), .7);
             visibility: visible;
             margin-top: 0;
             margin-bottom: 0;
-            color: $color-white;
+            color: var(--color-highlight);
         }
 
         &:placeholder-shown + &--label {
@@ -95,7 +93,7 @@ $loading-color: rgba(var(--color-primary), .7);
         }
 
         &--loading {
-            background-color: $loading-color;
+            opacity: .5;
         }
     }
 }

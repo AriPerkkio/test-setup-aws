@@ -14,9 +14,8 @@ const HomeContainer = () => {
     const { state, postData } = useDataAccess(mapPropsToState);
     const { sending, error } = state;
 
-    const onSubmit = useCallback(data =>
-        postData(data)
-            .then(() => formRef.current.reset()),
+    const onSubmit = useCallback(
+        data => postData(data).then(() => formRef.current.reset()),
         [formRef, postData]
     );
 

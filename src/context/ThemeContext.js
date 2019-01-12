@@ -21,7 +21,7 @@ const ThemeContextProvider = ({
 
     return (
         <ThemeContext.Provider value={context}>
-            <div id='app-container' className={theme}>
+            <div id='theme-container' className={theme}>
                 {children}
             </div>
         </ThemeContext.Provider>

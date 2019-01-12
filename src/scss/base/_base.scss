@@ -7,38 +7,42 @@
     font-family: inherit;
 }
 
-#app-container {
+html {
+    font-size: 62.5%;
+    font-family: $font-primary;
+}
+
+#theme-container {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: scroll;
+    background-color: var(--color-background);
+    padding: 3rem;
+
     * {
         transition: all .5s, opacity .5s ease-in;
     }
 
     &.theme-1 {
         --color-primary: #{$color-yellow};
-        --color-secondary: #{$color-pink};
-        --color-tertiary: #{$color-red};
+        --color-secondary: #{$color-red};
+        --color-background: #{$color-blue-light};
+        --color-highlight: #{$color-white};
+        --color-typo: #{$color-black};
+        --color-error: #{$color-yellow};
     }
 
     &.theme-2 {
-        --color-primary: #{$color-green-light};
-        --color-secondary: #{$color-green-dark};
-        --color-tertiary: #{$color-white};
+        --color-primary: #{$color-blue-dark};
+        --color-secondary: #{$color-blue};
+        --color-background: #{$color-blue-dark-2};
+        --color-highlight: #{$color-white};
+        --color-typo: #{$color-cyan};
+        --color-error: #{$color-orange};
     }
 }
 
-html {
-    font-size: 62.5%;
-    font-family: $font-primary;
-}
-
-#app-container {
-    height: 100%;
-    box-sizing: border-box;
-    overflow: scroll;
-    background-color: var(--color-primary);
-    padding: 3rem;
-}
-
 ::selection {
-    color: var(--color-primary);
-    background-color: $color-black;
+    color: var(--color-background);
+    background-color: var(--color-primary);
 }
