@@ -1,5 +1,21 @@
 .dashboard {
+    max-width: 100rem;
+    margin: 0 auto;
     font-size: 3rem;
     color: var(--color-typo);
     padding: 3rem;
+
+    display: grid;
+    grid-template-columns: [start] max-content [center] 1fr [end];
+    grid-column-gap: 2rem;
+
+    &-graph {
+        grid-column: start / center;
+    }
+
+    &-form {
+        grid-column: center / end;
+        align-content: start;
+        align-self: start;
+    }
 }

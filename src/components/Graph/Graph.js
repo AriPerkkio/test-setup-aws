@@ -13,6 +13,7 @@ const LINE_CLASS = `${BASE_CLASS}-line`;
 const Graph = ({
     className,
     data,
+    // loading, // TODO loading indicator inside svg
     ...props
 }) => {
     const graphRef = useRef();
