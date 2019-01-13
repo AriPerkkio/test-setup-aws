@@ -9,7 +9,7 @@ const Login = ({
     className,
     onSubmit,
     loading,
-    error
+    error,
 }) => {
     const classNames = concatClasses(
         BASE_CLASS,

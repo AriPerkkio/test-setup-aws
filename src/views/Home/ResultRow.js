@@ -19,7 +19,7 @@ const formatDate = time => {
 
 const ResultRow = ({
     time,
-    value
+    value,
 }) => {
     const date = formatDate(time);
 

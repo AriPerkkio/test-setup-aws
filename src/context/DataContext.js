@@ -12,7 +12,7 @@ const DataContextProvider = ({
 
     const context = {
         state,
-        dispatch: thunkDispatch
+        dispatch: thunkDispatch,
     };
 
     return (
@@ -32,5 +32,5 @@ const createThunkDispatcher = dispatch => (action, state) => {
 
 export {
     DataContext,
-    DataContextProvider
+    DataContextProvider,
 };

@@ -22,20 +22,20 @@ const Home = memo(({
                 onSubmit={onSubmit}
                 loading={sending}
                 error={error}
-                className={`${BASE_CLASS}--form`}
+                className={`${BASE_CLASS}-form`}
                 ref={formRef}>
 
                 <UserFormInput
-                    className={`${BASE_CLASS}--input`}
+                    className={`${BASE_CLASS}-input`}
                     name='Value'
                     type='number' />
 
                 <UserFormInput
-                    className={`${BASE_CLASS}--input`}
+                    className={`${BASE_CLASS}-input`}
                     name='Unit' />
 
                 <UserFormSubmit
-                    className={`${BASE_CLASS}--submit`}
+                    className={`${BASE_CLASS}-submit`}
                     text='Upload data' />
             </UserForm>
         </div>

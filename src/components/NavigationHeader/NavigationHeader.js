@@ -8,7 +8,7 @@ const BASE_CLASS = 'navigation-header';
 
 const loggedOutUserNavs = [
     { to: '/login', name: 'Login' },
-    { to: '/signup', name: 'Signup' }
+    { to: '/signup', name: 'Signup' },
 ];
 
 const loggedInUserNavs = [
@@ -32,14 +32,14 @@ const NavigationHeader = () => {
     return (
         <nav className={BASE_CLASS}>
             <button
-                className={`${BASE_CLASS}--btn-theme`}
+                className={`${BASE_CLASS}-btn-theme`}
                 onClick={switchTheme}>
                 Switch theme
             </button>
 
             {navs.map(({ name, ...props }) =>
                 <NavLink {...{ ...props, key: name }}
-                    className={`${BASE_CLASS}--link`}>
+                    className={`${BASE_CLASS}-link`}>
                     {name}
                 </NavLink>
             )}

@@ -5,7 +5,7 @@ import { useFadeIn, useDataAccess } from '../../hooks';
 
 const mapPropsToState = state => ({
     sending: state.sending,
-    error: state.error
+    error: state.error,
 });
 
 const HomeContainer = () => {

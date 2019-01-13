@@ -3,14 +3,14 @@ import React, { createContext, useState } from 'react';
 const AuthContext = createContext();
 
 const AuthContextProvider = ({
-    children
+    children,
 }) => {
     const [authToken, setAuthToken] = useState(null);
 
     const context = {
         setAuthToken,
         authToken,
-        isAuthenticated: authToken != null
+        isAuthenticated: authToken != null,
     };
 
     return (
@@ -22,5 +22,5 @@ const AuthContextProvider = ({
 
 export {
     AuthContext,
-    AuthContextProvider
+    AuthContextProvider,
 };

@@ -6,7 +6,7 @@ import { useFadeIn, useDataAccess } from '../../hooks';
 const mapPropsToState = state => ({
     loading: state.loading,
     data: state.data,
-    error: state.error
+    error: state.error,
 });
 
 const DashBoardContainer = () => {

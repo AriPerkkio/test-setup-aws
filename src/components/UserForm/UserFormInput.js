@@ -32,7 +32,7 @@ const UserFormInput = ({
 
             <label
                 htmlFor={id}
-                className={`${BASE_CLASS}--label`}>
+                className={`${BASE_CLASS}-label`}>
                 {name}
             </label>
         </>

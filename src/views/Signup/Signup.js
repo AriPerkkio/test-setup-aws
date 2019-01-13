@@ -11,7 +11,7 @@ const Signup = ({
     onVerify,
     loading,
     error,
-    isVerifying
+    isVerifying,
 }) => {
     const className = concatClasses(BASE_CLASS, classNameProp);
 
@@ -31,7 +31,7 @@ const Signup = ({
                 <UserFormInput name='Password' /> :
                 <>
                     <UserFormInput name='Verification Code' />
-                    <label className={`${BASE_CLASS}--verify-label`}>
+                    <label className={`${BASE_CLASS}-verify-label`}>
                         Verification code was sent to your email
                     </label>
                 </>}

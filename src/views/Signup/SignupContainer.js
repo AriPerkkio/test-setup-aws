@@ -24,7 +24,7 @@ const SignupContainer = ({ history }) => {
     const onVerifySuccess = () => {
         setLoading(false);
         setError(null);
-        history.push("/login");
+        history.push('/login');
     };
 
     const onVerify = ({ email, verificationCode }) => {
@@ -50,7 +50,7 @@ const SignupContainer = ({ history }) => {
             onVerify,
             loading,
             error,
-            isVerifying
+            isVerifying,
         }} />
     );
 };

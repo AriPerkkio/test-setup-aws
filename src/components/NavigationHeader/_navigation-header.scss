@@ -8,8 +8,8 @@
         margin: 0 1rem;
     }
 
-    &--btn-theme,
-    &--link {
+    &-btn-theme,
+    &-link {
         font-size: 2rem;
         font-weight: 600;
         color: var(--color-primary);
@@ -24,7 +24,7 @@
         box-shadow: 0 .3rem 1.5rem var(--color-secondary);
     }
 
-    &--btn-theme {
+    &-btn-theme {
         font-size: 1.3rem;
         margin-right: auto;
         width: 5.5rem;

@@ -9,14 +9,14 @@ const toggleTheme = theme =>
     theme === THEME_1 ? THEME_2 : THEME_1;
 
 const ThemeContextProvider = ({
-    children
+    children,
 }) => {
     const [theme, setTheme] = useState(THEME_1);
 
     const context = {
         theme,
         setTheme,
-        switchTheme: () => setTheme(toggleTheme(theme))
+        switchTheme: () => setTheme(toggleTheme(theme)),
     };
 
     return (
@@ -30,5 +30,5 @@ const ThemeContextProvider = ({
 
 export {
     ThemeContext,
-    ThemeContextProvider
+    ThemeContextProvider,
 };

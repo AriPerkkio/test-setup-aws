@@ -5,7 +5,7 @@ import {
     fetchDataFailure,
     postDataStart,
     postDataSuccess,
-    postDataFailure
+    postDataFailure,
 } from './actions';
 
 export const getDataDispatcher = (dispatch, authToken) => () => {
@@ -27,5 +27,5 @@ export const postDataDispatcher = (dispatch, authToken) => body => {
 };
 
 const parsePostResponse = ({ timestamp = 0 }) => ({
-    key: new Date(timestamp).getTime().toString()
+    key: new Date(timestamp).getTime().toString(),
 });

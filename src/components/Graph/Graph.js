@@ -5,7 +5,7 @@ import { concatClasses } from '../../utils';
 
 const d3 = { scaleTime, extent, scaleLinear, max, select, axisBottom, axisLeft, line };
 
-const BASE_CLASS = 'data-graph';
+const BASE_CLASS = 'graph';
 const X_AXIS_CLASS = `${BASE_CLASS}-x-axis`;
 const Y_AXIS_CLASS = `${BASE_CLASS}-y-axis`;
 const LINE_CLASS = `${BASE_CLASS}-line`;
@@ -13,6 +13,7 @@ const LINE_CLASS = `${BASE_CLASS}-line`;
 const Graph = ({
     className,
     data,
+    ...props
 }) => {
     const graphRef = useRef();
     const dataLength = (data && data.length) || 0;
@@ -45,14 +46,17 @@ const Graph = ({
 
         svg.select(`.${LINE_CLASS}`)
             .datum(data)
-            .attr("d", d3.line()
+            .attr('d', d3.line()
                 .x(({ key }) => x(key))
                 .y(({ value }) => y(value)));
 
     }, [dataLength]);
 
     return (
-        <svg ref={graphRef} className={classNames}>
+        <svg {...props}
+            ref={graphRef}
+            className={classNames}>
+
             <g className={X_AXIS_CLASS} />
             <g className={Y_AXIS_CLASS} />
             <path className={LINE_CLASS} />

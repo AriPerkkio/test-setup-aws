@@ -3,16 +3,16 @@
     color: var(--color-typo);
     padding: 3rem;
 
-    &--form {
+    &-form {
         align-items: baseline;
         max-width: 40rem;
     }
 
-    &--input {
+    &-input {
         grid-column: start / center;
     }
 
-    &--submit {
+    &-submit {
         font-size: 2rem;
         border-radius: 5px;
         grid-row: 1/2;

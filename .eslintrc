@@ -25,6 +25,9 @@
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "comma-dangle": ["error", "only-multiline"],
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "react-hooks/rules-of-hooks": "error"

@@ -4,17 +4,17 @@ import config from '../../api/cf-output';
 
 const userPool = new CognitoUserPool({
     UserPoolId: config.UserPool,
-    ClientId: config.UserPoolClient
+    ClientId: config.UserPoolClient,
 });
 
 const User = email => new CognitoUser({
     Username: email,
-    Pool: userPool
+    Pool: userPool,
 });
 
 const LoginData = (email, password) => new AuthenticationDetails({
     Username: email,
-    Password: password
+    Password: password,
 });
 
 const resultHandler = (resolve, reject) =>
@@ -44,7 +44,7 @@ const login = (email, password) =>
 
         user.authenticateUser(loginData, {
             onFailure: reject,
-            onSuccess: result => resolve(result.getIdToken().jwtToken)
+            onSuccess: result => resolve(result.getIdToken().jwtToken),
         });
     });
 
@@ -72,5 +72,5 @@ export {
     verify,
     login,
     logout,
-    getAuthToken
+    getAuthToken,
 };

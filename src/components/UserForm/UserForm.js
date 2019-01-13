@@ -29,7 +29,7 @@ const UserForm = ({
                 cloneElement(child, { loading }))}
 
             {error &&
-                <div className={`${BASE_CLASS}--errors`}>
+                <div className={`${BASE_CLASS}-errors`}>
                     Error: {error.message}
                 </div>}
 

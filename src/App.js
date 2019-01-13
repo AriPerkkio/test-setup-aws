@@ -48,5 +48,4 @@ const AuthenticatedRoutes = () =>
             </DataContextProvider>
         </Authenticator>} />;
 
-
 export default App;

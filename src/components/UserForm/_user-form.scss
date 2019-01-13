@@ -19,7 +19,7 @@ $base-font-size: 2rem;
 
     }
 
-    &--errors {
+    &-errors {
         font-size: $base-font-size * 2;
         font-weight: 100;
         color: var(--color-error);
@@ -75,7 +75,7 @@ $base-font-size: 2rem;
             color: currentColor;
         }
 
-        &--label {
+        &-label {
             grid-column: start / end;
             font-size: $base-font-size;
             padding-left: 1rem;
@@ -86,7 +86,7 @@ $base-font-size: 2rem;
             color: var(--color-highlight);
         }
 
-        &:placeholder-shown + &--label {
+        &:placeholder-shown + &-label {
             visibility: hidden;
             margin-top: -2rem;
             margin-bottom: 2rem;

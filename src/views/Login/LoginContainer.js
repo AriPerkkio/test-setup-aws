@@ -40,7 +40,7 @@ const LoginContainer = ({ history }) => {
             className,
             onSubmit,
             loading,
-            error
+            error,
         }} />
     );
 };
