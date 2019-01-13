@@ -2,34 +2,4 @@
     font-size: 3rem;
     color: var(--color-typo);
     padding: 3rem;
-
-    &-data-graph {
-        opacity: 1;
-        background-color: var(--color-secondary);
-        width: 500px;
-        height: 500px;
-        padding-left: 1rem;
-        border-radius: 2rem;
-
-        > * {
-            font-size: 2rem;
-            color: var(--color-highlight);
-        }
-
-        &-x-axis {
-            transform: translateY(470px);
-        }
-
-        &-y-axis {
-            transform: translateX(40px);
-        }
-
-        &-line {
-            fill: none;
-            stroke: var(--color-primary);
-            stroke-width: .3rem;
-            stroke-linejoin: round;
-            stroke-linecap: round;
-        }
-    }
 }
