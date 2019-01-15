@@ -2,10 +2,13 @@ service: service-one
 
 plugins:
   - serverless-stack-output
+  - serverless-offline
 
 custom:
   output:
     file: cf-output.json
+  serverless-offline:
+    port: 5000
 
 provider:
   name: aws

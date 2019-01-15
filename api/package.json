@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "AUTHORIZER='{\"claims\":{\"sub\":\"dev-auth\"}}' && serverless offline start",
     "deploy": "serverless deploy -v",
     "deploy:get-data": "serverless deploy function --function getData",
     "deploy:post-data": "serverless deploy function --function postData",
@@ -14,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "serverless": "^1.32.0",
+    "serverless-offline": "^4.0.0",
     "serverless-stack-output": "^0.2.3"
   }
 }
