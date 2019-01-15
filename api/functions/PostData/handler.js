@@ -7,49 +7,47 @@ module.exports.postData = async event =>
 
 const parseRequest = event => {
     const body = JSON.parse(event.body);
-    const { value, unit } = body || {};
+    const { value, unit, label, time } = body || {};
 
     return {
         userId: event.requestContext.authorizer.claims.sub,
         value,
-        unit
+        unit,
+        label: label || 'default-label',
+        time: time || new Date().getTime().toString(),
     };
 };
 
 const addData = event => new Promise((resolve, reject) => {
     try {
-        const { userId, value, unit } = parseRequest(event);
-        const item = generateItem(userId, value, unit);
+        const body = parseRequest(event);
+        const item = generateItem(body);
 
-        db.putItem(item, (err, result) =>
-            err ? reject(err) : resolve(result));
+        db.putItem(item, err =>
+            err ? reject(err) : resolve(body));
+
     } catch (e) {
         reject(e.message);
     }
 });
 
-const generateItem = (userId, value, unit) => ({
+const generateItem = ({ userId, value, unit, label, time }) => ({
     ...getTable(),
     Item: {
         userId: { S: userId },
         value: { S: value },
         unit: { S: unit },
-        key: { S: new Date().getTime().toString() }
+        label: { S: label },
+        time: { S: time },
     }
 });
 
-const onSuccess = data => ({
+const onSuccess = ({ userId, ...data }) => ({
     statusCode: 200,
-    body: JSON.stringify({
-        ...data,
-        timestamp: new Date().toString()
-    })
+    body: JSON.stringify({ data }),
 });
 
 const onFailure = error => ({
     statusCode: 500,
-    body: JSON.stringify({
-        error,
-        timestamp: new Date().toString()
-    })
+    body: JSON.stringify({ error }),
 });

@@ -30,7 +30,7 @@ const Graph = ({
 
         // Direct DOM manipulation without React
         const x = d3.scaleTime()
-            .domain(d3.extent(data, ({ key }) => key))
+            .domain(d3.extent(data, ({ time }) => time))
             .range([40, 470]); // TODO get rid of hardcoded values
 
         const y = d3.scaleLinear()
@@ -48,7 +48,7 @@ const Graph = ({
         svg.select(`.${LINE_CLASS}`)
             .datum(data)
             .attr('d', d3.line()
-                .x(({ key }) => x(key))
+                .x(({ time }) => x(time))
                 .y(({ value }) => y(value)));
 
     }, [dataLength]);

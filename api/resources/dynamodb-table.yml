@@ -4,12 +4,12 @@ Properties:
   AttributeDefinitions:
     - AttributeName: "userId"
       AttributeType: "S"
-    - AttributeName: "key"
+    - AttributeName: "time"
       AttributeType: "S"
   KeySchema:
     - AttributeName: "userId"
       KeyType: "HASH"
-    - AttributeName: "key"
+    - AttributeName: "time"
       KeyType: "RANGE"
   ProvisionedThroughput:
     ReadCapacityUnits: 5

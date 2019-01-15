@@ -10,11 +10,13 @@ const parseRequest = event => ({
     userId: event.requestContext.authorizer.claims.sub,
 });
 
-const parseQueryResult = ({ Items }) => Items.map(({ key, value, unit }) => ({
-    key: key.S,
-    value: value.S,
-    unit: unit.S
-}));
+const parseQueryResult = ({ Items }) =>
+    Items.map(({ value, unit, label, time }) => ({
+        value: value.S,
+        unit: unit.S,
+        label: label.S,
+        time: time.S,
+    }));
 
 const getData = event => new Promise((resolve, reject) => {
     try {
@@ -23,6 +25,7 @@ const getData = event => new Promise((resolve, reject) => {
 
         db.query(item, (err, result) =>
             err ? reject(err) : resolve(result));
+
     } catch (e) {
         reject(e.message);
     }
@@ -31,23 +34,17 @@ const getData = event => new Promise((resolve, reject) => {
 const generateQueryParams = userId => ({
     ...getTable(),
     ExpressionAttributeValues: {
-        ":v1": { S: userId }
+        ':v1': { S: userId },
     },
-    KeyConditionExpression: 'userId = :v1'
+    KeyConditionExpression: 'userId = :v1',
 });
 
 const onSuccess = data => ({
     statusCode: 200,
-    body: JSON.stringify({
-        data,
-        timestamp: new Date().toString()
-    })
+    body: JSON.stringify({ data }),
 });
 
 const onFailure = error => ({
     statusCode: 500,
-    body: JSON.stringify({
-        error,
-        timestamp: new Date().toString()
-    })
+    body: JSON.stringify({ error }),
 });

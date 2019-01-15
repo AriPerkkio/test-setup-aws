@@ -28,6 +28,7 @@
         "quotes": ["error", "single"],
         "comma-dangle": ["error", "only-multiline"],
         "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "react-hooks/rules-of-hooks": "error"

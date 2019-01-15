@@ -22,10 +22,6 @@ export const postDataDispatcher = (dispatch, authToken) => body => {
 
     return DataApi(authToken)
         .post(body)
-        .then(payload => dispatch(postDataSuccess({ data: { ...body, ...parsePostResponse(payload) } })))
+        .then(data => dispatch(postDataSuccess(data)))
         .catch(error => dispatch(postDataFailure(error)));
 };
-
-const parsePostResponse = ({ timestamp = 0 }) => ({
-    key: new Date(timestamp).getTime().toString(),
-});
