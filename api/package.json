@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "AUTHORIZER='{\"claims\":{\"sub\":\"dev-auth\"}}' && serverless offline start",
+    "install:dynamodb": "serverless dynamodb install",
+    "start": "export AUTHORIZER='{\"claims\":{\"sub\":\"dev-auth\"}}' && nodemon --watch functions --exec serverless offline start",
     "deploy": "serverless deploy -v",
     "deploy:get-data": "serverless deploy function --function getData",
     "deploy:post-data": "serverless deploy function --function postData",
@@ -14,7 +15,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^1.18.9",
     "serverless": "^1.32.0",
+    "serverless-dynamodb-local": "0.2.35",
     "serverless-offline": "^4.0.0",
     "serverless-stack-output": "^0.2.3"
   }

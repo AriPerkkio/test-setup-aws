@@ -5,3 +5,4 @@ package-lock.json
 .serverless
 .vscode
 cf-output.json
+.dynamodb

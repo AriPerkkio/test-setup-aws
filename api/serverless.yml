@@ -2,6 +2,7 @@ service: service-one
 
 plugins:
   - serverless-stack-output
+  - serverless-dynamodb-local
   - serverless-offline
 
 custom:
@@ -9,6 +10,9 @@ custom:
     file: cf-output.json
   serverless-offline:
     port: 5000
+  dynamodb:
+    start:
+      migrate: true
 
 provider:
   name: aws
