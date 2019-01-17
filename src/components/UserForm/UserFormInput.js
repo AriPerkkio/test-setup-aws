@@ -9,10 +9,12 @@ const UserFormInput = ({
     name,
     className,
     loading,
+    type,
+    placeholder,
     ...props
 }) => {
     const id = name.replace(' ', '-').toLowerCase();
-    const type = TYPES.includes(id) ? id : 'text';
+    const inputType = TYPES.includes(id) ? id : 'text';
 
     const classNames = concatClasses(
         BASE_CLASS,
@@ -26,14 +28,14 @@ const UserFormInput = ({
                 className={classNames}
                 name={name}
                 id={id}
-                type={type}
-                placeholder={name}
+                type={type || inputType}
+                placeholder={placeholder || name}
                 disabled={loading} />
 
             <label
                 htmlFor={id}
                 className={`${BASE_CLASS}-label`}>
-                {name}
+                {placeholder || name}
             </label>
         </>
     );

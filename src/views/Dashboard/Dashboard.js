@@ -41,6 +41,15 @@ const DashBoard = memo(({
                     className={`${BASE_CLASS}-input`}
                     name='Unit' />
 
+                <UserFormInput
+                    className={`${BASE_CLASS}-input`}
+                    name='Label' />
+
+                <UserFormInput
+                    className={`${BASE_CLASS}-input`}
+                    placeholder='Time YYYY-MM-DD'
+                    name='Time' />
+
                 <UserFormSubmit
                     className={`${BASE_CLASS}-submit`}
                     text='Upload data' />

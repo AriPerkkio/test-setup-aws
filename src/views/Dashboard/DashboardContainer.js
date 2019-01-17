@@ -10,6 +10,11 @@ const mapPropsToState = state => ({
     error: state.error,
 });
 
+const convertPostData = ({ time, ...body }) => ({
+    ...body,
+    time: time ? new Date(time).getTime().toString() : undefined
+});
+
 const DashBoardContainer = () => {
     const formRef = useRef();
     const className = useFadeIn();
@@ -18,10 +23,10 @@ const DashBoardContainer = () => {
 
     useEffect(() => { getData(); }, []);
 
-    const onSubmit = useCallback(
-        data => postData(data).then(() => formRef.current.reset()),
-        [formRef, postData]
-    );
+    const onSubmit = useCallback(data =>
+        postData(convertPostData(data))
+            .then(() => formRef.current.reset()),
+    [formRef, postData]);
 
     return (
         <Dashboard {...{

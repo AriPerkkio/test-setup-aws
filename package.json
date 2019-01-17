@@ -7,6 +7,7 @@
     "build": "webpack --mode=production",
     "deploy": "deploy-aws-s3-cloudfront --bucket aperkkio.test --source=./public/",
     "start": "webpack-dev-server --hot --mode=development",
+    "start:local": "webpack-dev-server --hot --mode=development --local-mode",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --fix src/"
   },

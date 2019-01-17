@@ -8,6 +8,7 @@ const getPath = dir => path.resolve(__dirname, dir);
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
+    const localMode = argv['local-mode'];
 
     const plugins = isProduction ?
         [new MiniCssExtractPlugin()] :
@@ -52,9 +53,11 @@ module.exports = (env, argv) => {
             clientLogLevel: 'error',
             proxy: {
                 '/api': {
-                    target: `http://${cf.CloudFrontDomainName}`,
                     changeOrigin: true,
-                    logLevel: 'debug'
+                    logLevel: 'debug',
+                    target: localMode ?
+                        'http://localhost:5000' :
+                        `http://${cf.CloudFrontDomainName}`
                 }
             }
         }
