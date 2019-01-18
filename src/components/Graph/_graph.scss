@@ -1,8 +1,11 @@
+$height: 500px;
+$width: 500px;
+
 .graph {
     opacity: 1;
     background-color: var(--color-secondary);
-    width: 500px;
-    height: 500px;
+    width: $width;
+    height: $height;
     padding-left: 1rem;
     border-radius: 2rem;
 
@@ -12,7 +15,7 @@
     }
 
     &-x-axis {
-        transform: translateY(470px);
+        transform: translateY($width - 30px);
     }
 
     &-y-axis {

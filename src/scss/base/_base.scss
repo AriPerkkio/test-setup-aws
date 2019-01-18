@@ -12,6 +12,10 @@ html {
     font-family: $font-primary;
 }
 
+html, body, #app-root {
+    height: 100%;
+}
+
 #theme-container {
     height: 100%;
     box-sizing: border-box;

@@ -39,7 +39,8 @@ module.exports = (env, argv) => {
                     ],
                     plugins: [
                         '@babel/plugin-proposal-class-properties',
-                        '@babel/plugin-syntax-dynamic-import'
+                        '@babel/plugin-syntax-dynamic-import',
+                        'react-hot-loader/babel'
                     ]
                 }
             }]
