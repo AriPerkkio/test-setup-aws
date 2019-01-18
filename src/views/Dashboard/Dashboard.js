@@ -54,8 +54,6 @@ const DashBoard = memo(({
                     className={`${BASE_CLASS}-submit`}
                     text='Upload data' />
             </UserForm>
-
-            {error && <p>{error}</p>}
         </div >
     );
 });

@@ -1,6 +1,17 @@
 const generateRequest = config =>
     fetch('/api/generic-data', config)
-        .then(resp => resp.json());
+        .then(parseResponse);
+
+const parseResponse = response => {
+    if (response.ok) {
+        return response.json();
+    }
+
+    return response.json()
+        .then(({ error }) => {
+            throw new Error(error.message);
+        });
+};
 
 const config = ({ body, authToken }) => ({
     headers: {
