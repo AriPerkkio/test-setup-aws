@@ -1,5 +1,5 @@
-$height: 500px;
-$width: 500px;
+$height: 45rem;
+$width: 60vw;
 
 .graph {
     opacity: 1;
@@ -15,11 +15,11 @@ $width: 500px;
     }
 
     &-x-axis {
-        transform: translateY($width - 30px);
+        transform: translateY($height - 3rem);
     }
 
     &-y-axis {
-        transform: translateX(40px);
+        transform: translateX(9rem);
     }
 
     &-line {
