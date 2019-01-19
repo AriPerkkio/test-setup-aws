@@ -3,16 +3,22 @@ const cf = require('./api/cf-output.json');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const getPath = dir => path.resolve(__dirname, dir);
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
     const localMode = argv['local-mode'];
+    const analyzeMode = argv.analyze;
 
     const plugins = isProduction ?
         [new MiniCssExtractPlugin()] :
         [new HtmlWebPackPlugin({ templateContent: '<div id="app-root"></div>' })];
+
+    if (analyzeMode) {
+        plugins.push(new BundleAnalyzerPlugin());
+    }
 
     return {
         entry: getPath('src/index.js'),
