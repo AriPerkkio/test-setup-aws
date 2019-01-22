@@ -1,16 +1,19 @@
-$height: 45rem;
-$width: 60vw;
+$height: 450px;
 
 .graph {
     opacity: 1;
     background-color: var(--color-secondary);
-    width: $width;
+    width: 60vh;
     height: $height;
     padding-left: 1rem;
     border-radius: 2rem;
 
     // Main element cannot have transition due to responsive children
     transition: none !important;
+
+    @include screen-medium {
+        width: 100%;
+    }
 
     * {
         transition: .2s !important;
@@ -19,11 +22,11 @@ $width: 60vw;
     }
 
     &-x-axis {
-        transform: translateY($height - 3rem);
+        transform: translateY($height - 30px);
     }
 
     &-y-axis {
-        transform: translateX(9rem);
+        transform: translateX(90px);
     }
 
     &-line {

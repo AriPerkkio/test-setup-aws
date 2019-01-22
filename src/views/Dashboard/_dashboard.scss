@@ -11,11 +11,20 @@
 
     &-graph {
         grid-column: start / center;
+
+        @include screen-medium {
+            grid-column: start / end;
+        }
     }
 
     &-form {
         grid-column: center / end;
         align-content: start;
         align-self: start;
+
+        @include screen-medium {
+            grid-column: start / end;
+            margin-top: 4rem;
+        }
     }
 }

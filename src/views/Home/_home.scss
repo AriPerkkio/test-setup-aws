@@ -10,11 +10,19 @@
 
     &-input {
         grid-column: start / center;
+
+        @include screen-small {
+            grid-column: start / end;
+        }
     }
 
     &-submit {
         font-size: 2rem;
         border-radius: 5px;
         grid-row: 1/2;
+
+        @include screen-small {
+            grid-row: 5/6;
+        }
     }
 }
