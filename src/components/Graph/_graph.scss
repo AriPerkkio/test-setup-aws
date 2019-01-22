@@ -3,7 +3,7 @@ $height: 450px;
 .graph {
     opacity: 1;
     background-color: var(--color-secondary);
-    width: 60vh;
+    width: 60vw;
     height: $height;
     padding-left: 1rem;
     border-radius: 2rem;
@@ -19,6 +19,10 @@ $height: 450px;
         transition: .2s !important;
         font-size: 2rem;
         color: var(--color-highlight);
+
+        @include screen-medium {
+            font-size: 1.5rem;
+        }
     }
 
     &-x-axis {
@@ -27,6 +31,10 @@ $height: 450px;
 
     &-y-axis {
         transform: translateX(90px);
+
+        @include screen-medium {
+            transform: translateX(60px);
+        }
     }
 
     &-line {
