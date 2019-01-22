@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { scaleTime, extent, scaleLinear, max, min, select, axisBottom, axisLeft, line } from 'd3';
 import { hot } from 'react-hot-loader';
 
@@ -27,7 +27,7 @@ const Graph = ({
         !dataLength && 'no-opacity',
     );
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!dataLength) return;
 
         updateGraph(graphRef, data);
