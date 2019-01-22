@@ -9,7 +9,11 @@ $width: 60vw;
     padding-left: 1rem;
     border-radius: 2rem;
 
-    > * {
+    // Main element cannot have transition due to responsive children
+    transition: none !important;
+
+    * {
+        transition: .2s !important;
         font-size: 2rem;
         color: var(--color-highlight);
     }

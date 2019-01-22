@@ -1,24 +1,25 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useReducer, useEffect } from 'react';
 
-const setterWithThreshold = (threshold, setter) => () => (newSize, oldSize) => {
+const reducerWithThreshold = threshold => (oldSize, newSize) => {
+
     if (Math.abs(newSize - oldSize) > threshold) {
-        setTimeout(() => setter(newSize), 200);
+        return newSize;
     }
+
+    return oldSize;
 };
 
 /**
  *  Track window innerWidth and innerHeight with given threshold
  */
-const useWindowSize = (threshold) => {
-    const [width, _setWidth] = useState(window.innerWidth);
-    const [height, _setHeight] = useState(window.innerHeight);
-
-    const setWidth = useMemo(setterWithThreshold(threshold, _setWidth), [threshold, _setWidth]);
-    const setHeight = useMemo(setterWithThreshold(threshold, _setHeight), [threshold, _setHeight]);
+const useWindowSize = threshold => {
+    const reducer = reducerWithThreshold(threshold);
+    const [width, setWidth] = useReducer(reducer, window.innerWidth);
+    const [height, setHeight] = useReducer(reducer, window.innerHeight);
 
     const updateSize = () => {
-        setWidth(window.innerWidth, width);
-        setHeight(window.innerHeight, height);
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
     };
 
     useEffect(() => {
