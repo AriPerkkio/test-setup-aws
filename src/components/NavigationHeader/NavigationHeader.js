@@ -15,6 +15,7 @@ const loggedOutUserNavs = [
 const loggedInUserNavs = [
     { to: '/auth/home', name: 'Home' },
     { to: '/auth/dashboard', name: 'Dashboard' },
+    { to: '/auth/playground', name: 'Playground' },
 ];
 
 const NavigationHeader = () => {

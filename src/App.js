@@ -10,6 +10,7 @@ const Signup = lazy(() => import(/* webpackChunkName: "signup" */ './views/Signu
 const Login = lazy(() => import(/* webpackChunkName: "login" */ './views/Login'));
 const Home = lazy(() => import(/* webpackChunkName: "home" */ './views/Home'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "dashboard" */ './views/Dashboard'));
+const Playground = lazy(() => import(/* webpackChunkName: "playground" */ './views/Playground'));
 
 const App = () => {
     return (
@@ -43,6 +44,7 @@ const AuthenticatedRoutes = () =>
                 <Switch>
                     <Route exact path={`${auth}(/home|/)`} component={Home} />
                     <Route exact path={`${auth}/dashboard`} component={Dashboard} />
+                    <Route exact path={`${auth}/playground`} component={Playground} />
                     <Redirect to={`${auth}/`} />
                 </Switch>
             </DataContextProvider>
