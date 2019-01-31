@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { scaleTime, extent, scaleLinear, max, min, select, axisBottom, axisLeft, line } from 'd3';
-import { hot } from 'react-hot-loader';
 
 import { useWindowSize } from '../../hooks';
 import { concatClasses, getTransformXY } from '../../utils';
@@ -86,4 +85,4 @@ const updateGraph = (ref, data) => {
             .y(({ value }) => y(value)));
 };
 
-export default hot(module)(Graph);
+export default Graph;

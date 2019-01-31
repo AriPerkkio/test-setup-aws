@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
 
 const BASE_CLASS = 'playground';
 
@@ -11,4 +10,4 @@ const Playground = () => {
     );
 };
 
-export default hot(module)(Playground);
+export default Playground;

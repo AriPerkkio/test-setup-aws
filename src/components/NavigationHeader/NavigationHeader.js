@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
 
 import { ThemeContext, AuthContext } from '../../context';
 import { logout } from '../../api/UserApi';
@@ -49,4 +48,4 @@ const NavigationHeader = () => {
     );
 };
 
-export default hot(module)(NavigationHeader);
+export default NavigationHeader;
