@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 
 import Graph from '../../components/Graph';
 import UserForm, { UserFormInput, UserFormSubmit } from '../../components/UserForm';
+import Loader from '../../components/Loader';
 import { concatClasses } from '../../utils';
 
 const BASE_CLASS = 'dashboard';
@@ -19,7 +20,7 @@ const DashBoard = memo(({
 
     return (
         <div className={classNames}>
-            {loading && <p>Loading...</p>}
+            {loading && <Loader />}
 
             <Graph
                 className={`${BASE_CLASS}-graph`}

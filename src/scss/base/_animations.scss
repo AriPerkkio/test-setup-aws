@@ -2,3 +2,28 @@
     0%   { transform: rotate(0deg);   }
     100% { transform: rotate(360deg); }
 }
+
+@keyframes peek {
+    0%   {
+        transform:
+            translateX(-5rem)
+            translateY(-5rem)
+            rotate(-180deg);
+    }
+
+    20%, 50% {
+        transform:
+            translateX(0)
+            rotate(0deg);
+        opacity: 1;
+    }
+
+    75% { opacity: 0; }
+
+    100% {
+        transform:
+            translateX(30rem)
+            translateY(5rem)
+            rotate(180deg);
+    }
+}

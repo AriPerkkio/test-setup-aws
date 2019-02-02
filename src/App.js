@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import NavigationHeader from './components/NavigationHeader';
+import Loader from './components/Loader';
 import { AuthContextProvider, ThemeContextProvider, DataContextProvider } from './context';
 import { reducer, initialState } from './reducers';
 import { Authenticator } from './utils';
@@ -16,7 +17,7 @@ const App = () => {
     return (
         <RootContext>
             <NavigationHeader />
-            <Suspense fallback={<div />}>
+            <Suspense fallback={<Loader />}>
                 <Switch>
                     <Route exact path="/signup" component={Signup} />
                     <Route exact path="(/login|/)" component={Login} />
