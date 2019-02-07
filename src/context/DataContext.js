@@ -22,12 +22,12 @@ const DataContextProvider = ({
     );
 };
 
-const createThunkDispatcher = dispatch => (action, state) => {
+const createThunkDispatcher = dispatch => action => {
     if (typeof action === 'function') {
-        return action(dispatch, state);
+        return action(dispatch);
     }
 
-    dispatch(action, state);
+    dispatch(action);
 };
 
 export {
