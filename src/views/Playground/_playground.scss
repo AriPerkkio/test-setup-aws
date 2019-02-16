@@ -8,4 +8,16 @@
     height: 50vh;
     border-radius: 90px;
     padding: 5rem;
+
+    .temp {
+        $size: 1px;
+
+        margin: 5rem auto;
+        width: $size;
+        height: $size;
+
+        box-shadow:
+            my-line(1, 10, $color-orange);
+    }
 }
+

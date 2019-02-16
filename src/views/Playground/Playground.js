@@ -6,6 +6,8 @@ const Playground = () => {
     return (
         <div className={BASE_CLASS}>
             <h1>Playground</h1>
+
+            <div className='temp' />
         </div>
     );
 };
