@@ -44,14 +44,16 @@ const SignupContainer = ({ history }) => {
     };
 
     return (
-        <Signup {...{
-            className,
-            onSignup,
-            onVerify,
-            loading,
-            error,
-            isVerifying,
-        }} />
+        <Signup
+            {...{
+                className,
+                onSignup,
+                onVerify,
+                loading,
+                error,
+                isVerifying,
+            }}
+        />
     );
 };
 

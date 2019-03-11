@@ -21,19 +21,19 @@
     $x1: $x0;
 
     @for $i from 1 through 10 {
-      $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
-      $x0: $x1;
+        $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+        $x0: $x1;
     }
 
     @return $x1;
-  }
+}
 
 @function my-line($from, $to, $color) {
     $shadows: 0 0 0;
     $final-y: pow($to, 2);
 
     @for $i from $from through $final-y {
-        $y: 1px *  $i;
+        $y: 1px * $i;
         $x: 1px * sqrt(pow(100, 2) + pow($i, 2));
 
         $new: $x $y 0 $color;

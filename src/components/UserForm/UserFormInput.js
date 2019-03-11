@@ -19,22 +19,22 @@ const UserFormInput = ({
     const classNames = concatClasses(
         BASE_CLASS,
         className,
-        loading && `${BASE_CLASS}--loading`,
+        loading && `${BASE_CLASS}--loading`
     );
 
     return (
         <>
-            <input {...props}
+            <input
+                {...props}
                 className={classNames}
                 name={name}
                 id={id}
                 type={type || inputType}
                 placeholder={placeholder || name}
-                disabled={loading} />
+                disabled={loading}
+            />
 
-            <label
-                htmlFor={id}
-                className={`${BASE_CLASS}-label`}>
+            <label htmlFor={id} className={`${BASE_CLASS}-label`}>
                 {placeholder || name}
             </label>
         </>

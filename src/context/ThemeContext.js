@@ -5,12 +5,9 @@ const ThemeContext = createContext();
 const THEME_1 = 'theme-1';
 const THEME_2 = 'theme-2';
 
-const toggleTheme = theme =>
-    theme === THEME_1 ? THEME_2 : THEME_1;
+const toggleTheme = theme => (theme === THEME_1 ? THEME_2 : THEME_1);
 
-const ThemeContextProvider = ({
-    children,
-}) => {
+const ThemeContextProvider = ({ children }) => {
     const [theme, setTheme] = useState(THEME_1);
 
     const context = {
@@ -28,7 +25,4 @@ const ThemeContextProvider = ({
     );
 };
 
-export {
-    ThemeContext,
-    ThemeContextProvider,
-};
+export { ThemeContext, ThemeContextProvider };

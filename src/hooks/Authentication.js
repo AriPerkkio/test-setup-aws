@@ -3,7 +3,9 @@ import { useEffect, useContext } from 'react';
 import { getAuthToken } from '../api/UserApi';
 import { AuthContext } from '../context';
 
-const redirectToLogin = () => { window.location.href = '#/login'; };
+const redirectToLogin = () => {
+    window.location.href = '#/login';
+};
 
 /**
  * On component mount, check if user is authenticated. Set token into context

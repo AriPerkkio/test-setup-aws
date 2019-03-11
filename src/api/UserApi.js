@@ -1,4 +1,9 @@
-import { CognitoUserPool, CognitoUserAttribute, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import {
+    CognitoUserPool,
+    CognitoUserAttribute,
+    CognitoUser,
+    AuthenticationDetails,
+} from 'amazon-cognito-identity-js';
 
 import config from '../../api/cf-output';
 
@@ -7,19 +12,20 @@ const userPool = new CognitoUserPool({
     ClientId: config.UserPoolClient,
 });
 
-const User = email => new CognitoUser({
-    Username: email,
-    Pool: userPool,
-});
+const User = email =>
+    new CognitoUser({
+        Username: email,
+        Pool: userPool,
+    });
 
-const LoginData = (email, password) => new AuthenticationDetails({
-    Username: email,
-    Password: password,
-});
+const LoginData = (email, password) =>
+    new AuthenticationDetails({
+        Username: email,
+        Password: password,
+    });
 
-const resultHandler = (resolve, reject) =>
-    (error, result) =>
-        error ? reject(error) : resolve(result);
+const resultHandler = (resolve, reject) => (error, result) =>
+    error ? reject(error) : resolve(result);
 
 const verify = (email, verificationCode) =>
     new Promise((resolve, reject) => {
@@ -31,7 +37,9 @@ const verify = (email, verificationCode) =>
 
 const signup = (email, password) =>
     new Promise((resolve, reject) => {
-        const attributeList = [new CognitoUserAttribute({ Name: 'email', Value: email })];
+        const attributeList = [
+            new CognitoUserAttribute({ Name: 'email', Value: email }),
+        ];
         const handler = resultHandler(resolve, reject);
 
         userPool.signUp(email, password, attributeList, null, handler);
@@ -67,10 +75,4 @@ const getAuthToken = () =>
         }
     });
 
-export {
-    signup,
-    verify,
-    login,
-    logout,
-    getAuthToken,
-};
+export { signup, verify, login, logout, getAuthToken };

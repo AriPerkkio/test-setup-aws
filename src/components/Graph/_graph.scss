@@ -16,7 +16,7 @@ $height: 450px;
     }
 
     * {
-        transition: .2s !important;
+        transition: 0.2s !important;
         font-size: 2rem;
         color: var(--color-highlight);
 
@@ -40,7 +40,7 @@ $height: 450px;
     &-line {
         fill: none;
         stroke: var(--color-primary);
-        stroke-width: .3rem;
+        stroke-width: 0.3rem;
         stroke-linejoin: round;
         stroke-linecap: round;
     }

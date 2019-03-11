@@ -1,10 +1,30 @@
 import React, { useEffect, useRef } from 'react';
-import { scaleTime, extent, scaleLinear, max, min, select, axisBottom, axisLeft, line } from 'd3';
+import {
+    scaleTime,
+    extent,
+    scaleLinear,
+    max,
+    min,
+    select,
+    axisBottom,
+    axisLeft,
+    line,
+} from 'd3';
 
 import { useWindowSize } from '../../hooks';
 import { concatClasses, getTransformXY } from '../../utils';
 
-const d3 = { scaleTime, extent, scaleLinear, max, min, select, axisBottom, axisLeft, line };
+const d3 = {
+    scaleTime,
+    extent,
+    scaleLinear,
+    max,
+    min,
+    select,
+    axisBottom,
+    axisLeft,
+    line,
+};
 
 const BASE_CLASS = 'graph';
 const X_AXIS_CLASS = `${BASE_CLASS}-x-axis`;
@@ -23,7 +43,7 @@ const Graph = ({
     const classNames = concatClasses(
         BASE_CLASS,
         className,
-        !dataLength && 'no-opacity',
+        !dataLength && 'no-opacity'
     );
 
     useEffect(() => {
@@ -33,10 +53,7 @@ const Graph = ({
     }, [dataLength, height, width]);
 
     return (
-        <svg {...props}
-            ref={graphRef}
-            className={classNames}>
-
+        <svg {...props} ref={graphRef} className={classNames}>
             <g className={X_AXIS_CLASS} />
             <g className={Y_AXIS_CLASS} />
             <path className={LINE_CLASS} />
@@ -45,7 +62,6 @@ const Graph = ({
 };
 
 const updateGraph = (ref, data) => {
-
     // DOM elements
     const { current: elem } = ref;
     const svg = d3.select(elem);
@@ -63,26 +79,40 @@ const updateGraph = (ref, data) => {
 
     const maxValueY = d3.max(data, ({ value }) => value) * 1;
     const minValueY = d3.min(data, ({ value }) => value) * 1;
-    const paddingBottom = minValueY - (maxValueY - minValueY) * .05;
-    const paddingTop = maxValueY + (maxValueY - minValueY) * .1;
+    const paddingBottom = minValueY - (maxValueY - minValueY) * 0.05;
+    const paddingTop = maxValueY + (maxValueY - minValueY) * 0.1;
 
-    const x = d3.scaleTime()
+    const x = d3
+        .scaleTime()
         .domain(d3.extent(data, ({ time }) => time))
         .range([marginLeft, width - marginLeft / 2]);
 
-    const y = d3.scaleLinear()
-        .domain([paddingBottom, paddingTop]).nice()
+    const y = d3
+        .scaleLinear()
+        .domain([paddingBottom, paddingTop])
+        .nice()
         .range([marginBottom, height - marginBottom]);
 
     // Direct DOM manipulation without React
-    axisX.call(g => g.call(d3.axisBottom(x).ticks(5).tickSizeOuter(0)));
+    axisX.call(g =>
+        g.call(
+            d3
+                .axisBottom(x)
+                .ticks(5)
+                .tickSizeOuter(0)
+        )
+    );
     axisY.call(g => g.call(d3.axisLeft(y).tickFormat(formatY)));
 
     svg.select(`.${LINE_CLASS}`)
         .datum(data)
-        .attr('d', d3.line()
-            .x(({ time }) => x(time))
-            .y(({ value }) => y(value)));
+        .attr(
+            'd',
+            d3
+                .line()
+                .x(({ time }) => x(time))
+                .y(({ value }) => y(value))
+        );
 };
 
 export default Graph;

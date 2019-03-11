@@ -1,20 +1,15 @@
 import React from 'react';
 
-import UserForm, { UserFormInput, UserFormSubmit } from '../../components/UserForm';
+import UserForm, {
+    UserFormInput,
+    UserFormSubmit,
+} from '../../components/UserForm';
 import { concatClasses } from '../../utils';
 
 const BASE_CLASS = 'login';
 
-const Login = ({
-    className,
-    onSubmit,
-    loading,
-    error,
-}) => {
-    const classNames = concatClasses(
-        BASE_CLASS,
-        className,
-    );
+const Login = ({ className, onSubmit, loading, error }) => {
+    const classNames = concatClasses(BASE_CLASS, className);
 
     return (
         <UserForm {...{ className: classNames, onSubmit, loading, error }}>

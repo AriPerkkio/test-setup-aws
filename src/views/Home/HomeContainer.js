@@ -20,13 +20,15 @@ const HomeContainer = () => {
     );
 
     return (
-        <Home {...{
-            className,
-            formRef,
-            sending,
-            error,
-            onSubmit,
-        }} />
+        <Home
+            {...{
+                className,
+                formRef,
+                sending,
+                error,
+                onSubmit,
+            }}
+        />
     );
 };
 

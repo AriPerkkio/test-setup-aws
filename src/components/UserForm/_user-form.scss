@@ -9,14 +9,13 @@ $base-font-size: 2rem;
     border-radius: 3rem;
     border: 0;
     background-color: var(--color-secondary);
-    box-shadow: 0 .5rem 1.5rem var(--color-secondary);
+    box-shadow: 0 0.5rem 1.5rem var(--color-secondary);
 
     display: grid;
     grid-template-columns: [start] 1fr [center] max-content [end];
     grid-column-gap: 1rem;
 
     &--loading {
-
     }
 
     &-errors {
@@ -36,13 +35,15 @@ $base-font-size: 2rem;
 
         border: 0;
         border-radius: 20%;
-        box-shadow: 0 .1rem 1rem var(--color-primary);
-        padding: .2rem 1.5rem;
+        box-shadow: 0 0.1rem 1rem var(--color-primary);
+        padding: 0.2rem 1.5rem;
 
-        &::after { opacity: 0; }
+        &::after {
+            opacity: 0;
+        }
 
         &--loading {
-            opacity: .5;
+            opacity: 0.5;
 
             &::after {
                 content: '';
@@ -51,11 +52,11 @@ $base-font-size: 2rem;
                 height: $base-font-size / 1.2;
                 opacity: 1;
 
-                border: .2rem dotted var(--color-typo);
+                border: 0.2rem dotted var(--color-typo);
                 border-radius: 50%;
                 border-left-color: transparent;
                 border-bottom-color: transparent;
-                animation: rotate .9s linear infinite;
+                animation: rotate 0.9s linear infinite;
             }
         }
     }
@@ -65,9 +66,9 @@ $base-font-size: 2rem;
         border: 0;
         border-radius: 1rem;
         outline: 0;
-        padding: .5rem 0 .5rem 1rem;
+        padding: 0.5rem 0 0.5rem 1rem;
         background-color: var(--color-primary);
-        box-shadow: 0 .1rem 1rem var(--color-primary);
+        box-shadow: 0 0.1rem 1rem var(--color-primary);
 
         &,
         &::placeholder {
@@ -93,7 +94,7 @@ $base-font-size: 2rem;
         }
 
         &--loading {
-            opacity: .5;
+            opacity: 0.5;
         }
     }
 }

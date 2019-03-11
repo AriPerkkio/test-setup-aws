@@ -20,7 +20,9 @@ html {
     }
 }
 
-html, body, #app-root {
+html,
+body,
+#app-root {
     height: 100%;
 }
 
@@ -32,7 +34,7 @@ html, body, #app-root {
     padding: 3rem;
 
     * {
-        transition: all .5s, opacity .5s ease-in;
+        transition: all 0.5s, opacity 0.5s ease-in;
     }
 
     &.theme-1 {

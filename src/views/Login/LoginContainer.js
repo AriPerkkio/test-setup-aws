@@ -36,12 +36,14 @@ const LoginContainer = ({ history }) => {
     };
 
     return (
-        <Login {...{
-            className,
-            onSubmit,
-            loading,
-            error,
-        }} />
+        <Login
+            {...{
+                className,
+                onSubmit,
+                loading,
+                error,
+            }}
+        />
     );
 };
 

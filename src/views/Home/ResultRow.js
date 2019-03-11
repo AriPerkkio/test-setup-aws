@@ -1,9 +1,6 @@
 import React from 'react';
 
-const toTwoDigits = day =>
-    day.toString().length === 1 ?
-        `0${day}` :
-        day;
+const toTwoDigits = day => (day.toString().length === 1 ? `0${day}` : day);
 
 const formatDate = time => {
     const date = new Date(parseInt(time));
@@ -17,15 +14,10 @@ const formatDate = time => {
     return `${days}-${months}-${years} ${hours}:${minutes}`;
 };
 
-const ResultRow = ({
-    time,
-    value,
-}) => {
+const ResultRow = ({ time, value }) => {
     const date = formatDate(time);
 
-    return (
-        <li>{`${date} : ${value}`}</li>
-    );
+    return <li>{`${date} : ${value}`}</li>;
 };
 
 export default ResultRow;

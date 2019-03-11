@@ -14,10 +14,7 @@ if (process.env.NODE_ENV === 'development') {
         module.hot.accept('./App', () => {
             const ReloadedApp = require('./App').default;
 
-            ReactDOM.render(
-                <ReloadedApp />,
-                appRoot
-            );
+            ReactDOM.render(<ReloadedApp />, appRoot);
         });
     }
 }

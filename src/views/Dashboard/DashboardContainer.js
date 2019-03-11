@@ -12,7 +12,7 @@ const mapPropsToState = state => ({
 
 const convertPostData = ({ time, ...body }) => ({
     ...body,
-    time: time ? new Date(time).getTime().toString() : undefined
+    time: time ? new Date(time).getTime().toString() : undefined,
 });
 
 const DashBoardContainer = () => {
@@ -21,23 +21,28 @@ const DashBoardContainer = () => {
     const { state, getData, postData } = useDataAccess(mapPropsToState);
     const { data, sending, loading, error } = state;
 
-    useEffect(() => { getData(); }, []);
+    useEffect(() => {
+        getData();
+    }, []);
 
-    const onSubmit = useCallback(data =>
-        postData(convertPostData(data))
-            .then(() => formRef.current.reset()),
-    [formRef, postData]);
+    const onSubmit = useCallback(
+        data =>
+            postData(convertPostData(data)).then(() => formRef.current.reset()),
+        [formRef, postData]
+    );
 
     return (
-        <Dashboard {...{
-            data,
-            loading,
-            sending,
-            error,
-            className,
-            onSubmit,
-            formRef,
-        }} />
+        <Dashboard
+            {...{
+                data,
+                loading,
+                sending,
+                error,
+                className,
+                onSubmit,
+                formRef,
+            }}
+        />
     );
 };
 

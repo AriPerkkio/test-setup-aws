@@ -1,7 +1,6 @@
 import { useReducer, useEffect } from 'react';
 
 const reducerWithThreshold = threshold => (oldSize, newSize) => {
-
     if (Math.abs(newSize - oldSize) > threshold) {
         return newSize;
     }

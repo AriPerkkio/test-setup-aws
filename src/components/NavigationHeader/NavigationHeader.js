@@ -26,24 +26,27 @@ const NavigationHeader = () => {
         setAuthToken(null);
     };
 
-    const navs = isAuthenticated ?
-        loggedInUserNavs.concat({ to: '/login', name: 'Logout', onClick: onLogOut }) :
-        loggedOutUserNavs;
+    const navs = isAuthenticated
+        ? loggedInUserNavs.concat({
+              to: '/login',
+              name: 'Logout',
+              onClick: onLogOut,
+          })
+        : loggedOutUserNavs;
 
     return (
         <nav className={BASE_CLASS}>
-            <button
-                className={`${BASE_CLASS}-btn-theme`}
-                onClick={switchTheme}>
+            <button className={`${BASE_CLASS}-btn-theme`} onClick={switchTheme}>
                 Switch theme
             </button>
 
-            {navs.map(({ name, ...props }) =>
-                <NavLink {...{ ...props, key: name }}
+            {navs.map(({ name, ...props }) => (
+                <NavLink
+                    {...{ ...props, key: name }}
                     className={`${BASE_CLASS}-link`}>
                     {name}
                 </NavLink>
-            )}
+            ))}
         </nav>
     );
 };

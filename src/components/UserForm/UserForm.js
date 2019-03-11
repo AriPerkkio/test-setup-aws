@@ -16,23 +16,22 @@ const UserForm = ({
     const classNames = concatClasses(
         BASE_CLASS,
         className,
-        loading && `${BASE_CLASS}--loading`,
+        loading && `${BASE_CLASS}--loading`
     );
 
     return (
-        <form {...props}
+        <form
+            {...props}
             onSubmit={preventEventSubmit(onSubmit)}
             className={classNames}
             ref={fwdRef}>
+            {Children.map(children, child => cloneElement(child, { loading }))}
 
-            {Children.map(children, child =>
-                cloneElement(child, { loading }))}
-
-            {error &&
+            {error && (
                 <div className={`${BASE_CLASS}-errors`}>
                     Error: {error.message}
-                </div>}
-
+                </div>
+            )}
         </form>
     );
 };
@@ -40,8 +39,7 @@ const UserForm = ({
 const preventEventSubmit = onSubmit => event => {
     event.preventDefault();
 
-    const data = Array.from(event.target)
-        .reduce(formInputReducer, {});
+    const data = Array.from(event.target).reduce(formInputReducer, {});
 
     onSubmit(data);
 };
@@ -56,7 +54,10 @@ const formInputReducer = (data, input) => {
 
 const toLowerCamelCase = name => {
     const first = name.charAt(0).toLowerCase();
-    const rest = name.slice(1).split(' ').join('');
+    const rest = name
+        .slice(1)
+        .split(' ')
+        .join('');
 
     return first + rest;
 };

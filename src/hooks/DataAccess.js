@@ -7,14 +7,18 @@ import { DataContext, AuthContext } from '../context';
  * Provides simple way to access data store and methods for updating it.
  * Hides implementation of useReducer and useContext
  */
-const useDataAccess = (
-    mapPropsToState = state => state
-) => {
+const useDataAccess = (mapPropsToState = state => state) => {
     const { authToken } = useContext(AuthContext);
     const { state, dispatch } = useContext(DataContext);
 
-    const getData = useMemo(() => getDataDispatcher(dispatch, authToken), [dispatch, authToken]);
-    const postData = useMemo(() => postDataDispatcher(dispatch, authToken), [dispatch, authToken]);
+    const getData = useMemo(() => getDataDispatcher(dispatch, authToken), [
+        dispatch,
+        authToken,
+    ]);
+    const postData = useMemo(() => postDataDispatcher(dispatch, authToken), [
+        dispatch,
+        authToken,
+    ]);
 
     const mappedState = mapPropsToState(state);
 
@@ -28,6 +32,8 @@ const useDataAccess = (
 };
 
 // For debugging + performance optimization
-const setDispatchDebugging = dispatch => { window.__DISPATCH__ = dispatch; };
+const setDispatchDebugging = dispatch => {
+    window.__DISPATCH__ = dispatch;
+};
 
 export default useDataAccess;

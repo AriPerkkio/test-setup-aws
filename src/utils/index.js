@@ -8,7 +8,7 @@ const getTransformXY = d3Element => {
 
     return {
         y: values.pop(),
-        x: values.pop()
+        x: values.pop(),
     };
 };
 
@@ -22,13 +22,12 @@ const resolveClassInput = input => {
     return className ? className : '';
 };
 
-const concatClasses = (...classNames) => classNames
-    .map(resolveClassInput)
-    .join(' ').trim();
+const concatClasses = (...classNames) =>
+    classNames
+        .map(resolveClassInput)
+        .join(' ')
+        .trim();
 
 export { default as Authenticator } from './Authenticator';
 
-export {
-    concatClasses,
-    getTransformXY,
-};
+export { concatClasses, getTransformXY };

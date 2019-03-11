@@ -4,23 +4,15 @@ import { concatClasses } from '../../utils';
 
 const BASE_CLASS = 'user-form-submit';
 
-const SubmitButton = ({
-    loading,
-    className,
-    text,
-    ...props
-}) => {
+const SubmitButton = ({ loading, className, text, ...props }) => {
     const classNames = concatClasses(
         BASE_CLASS,
         loading && `${BASE_CLASS}--loading`,
-        className,
+        className
     );
 
     return (
-        <button
-            disabled={loading}
-            className={classNames}
-            {...props}>
+        <button disabled={loading} className={classNames} {...props}>
             {text}
         </button>
     );
