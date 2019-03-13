@@ -10,15 +10,19 @@
     "deploy:get-data": "serverless deploy function --function getData",
     "deploy:post-data": "serverless deploy function --function postData",
     "undeploy": "serverless remove",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:server": "start-server-and-test :5000/api/generic-data"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^24.5.0",
+    "node-fetch": "^2.3.0",
     "nodemon": "^1.18.9",
     "serverless": "^1.32.0",
     "serverless-dynamodb-local": "0.2.35",
     "serverless-offline": "^4.0.0",
-    "serverless-stack-output": "^0.2.3"
+    "serverless-stack-output": "^0.2.3",
+    "start-server-and-test": "^1.7.11"
   }
 }
